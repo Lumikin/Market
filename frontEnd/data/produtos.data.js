@@ -17,7 +17,7 @@ const produtos = [
     Id: 3,
     Nome: "Monitor LG Ultrawide 29",
     Preco: 1299.99,
-    Imagem: "",
+    Imagem: "./assets/MotinorLG.png",
     DataCad: "25/04/2026",
   },
   {
