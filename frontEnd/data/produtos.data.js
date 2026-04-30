@@ -3,14 +3,14 @@ const produtos = [
     Id: 1,
     Nome: "Smartphone Galaxy S24",
     Preco: 4999.0,
-    Imagem: "",
+    Imagem: "./assets/s24.png",
     DataCad: "30/04/2026",
   },
   {
     Id: 2,
     Nome: "Notebook Dell Inspiron",
     Preco: 3850.5,
-    Imagem: "",
+    Imagem: "./assets/DellInspiron.png",
     DataCad: "28/04/2026",
   },
   {
