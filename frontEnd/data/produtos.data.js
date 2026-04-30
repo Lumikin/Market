@@ -4,7 +4,7 @@ const produtos = [
     Id: 1,
     Nome: "Smartphone Galaxy S24",
     Preco: 4999.0,
-    Imagem: "./assets/s24.png",
+    Imagem: "./src/assets/s24.png",
     DataCad: "30/04/2026",
   },
   {
