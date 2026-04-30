@@ -71,3 +71,4 @@ const produtos = [
     DataCad: "01/04/2026",
   },
 ];
+export default produtos
