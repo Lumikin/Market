@@ -1,9 +1,10 @@
+// --- Informações temporarias para nao precisar de API --- //
 const produtos = [
   {
     Id: 1,
     Nome: "Smartphone Galaxy S24",
     Preco: 4999.0,
-    Imagem: "./assets/s24.png",
+    Imagem: "./src/assets/s24.png",
     DataCad: "30/04/2026",
   },
   {
@@ -17,56 +18,57 @@ const produtos = [
     Id: 3,
     Nome: "Monitor LG Ultrawide 29",
     Preco: 1299.99,
-    Imagem: "",
+    Imagem: "./assets/MotinorLG.png",
     DataCad: "25/04/2026",
   },
   {
     Id: 4,
     Nome: "Teclado Mecânico Redragon",
     Preco: 250.0,
-    Imagem: "",
+    Imagem: "./assets/TecladoRedragon.png",
     DataCad: "20/04/2026",
   },
   {
     Id: 5,
     Nome: "Mouse Gamer Logitech G203",
     Preco: 135.9,
-    Imagem: "",
+    Imagem: "./assets/MouseLogitech.png",
     DataCad: "18/04/2026",
   },
   {
     Id: 6,
     Nome: "Fone de Ouvido JBL Tune",
     Preco: 299.0,
-    Imagem: "",
+    Imagem: "./assets/FoneJBL.png",
     DataCad: "15/04/2026",
   },
   {
     Id: 7,
     Nome: "Cadeira Gamer ThunderX3",
     Preco: 1150.0,
-    Imagem: "",
+    Imagem: "./assets/CadeiraGamer.png",
     DataCad: "10/04/2026",
   },
   {
     Id: 8,
     Nome: "Microfone HyperX QuadCast",
     Preco: 899.9,
-    Imagem: "",
+    Imagem: "./assets/MicHyperX.png",
     DataCad: "05/04/2026",
   },
   {
     Id: 9,
     Nome: "Webcam Logitech C920",
     Preco: 349.99,
-    Imagem: "",
+    Imagem: "./assets/CamLogi.png",
     DataCad: "02/04/2026",
   },
   {
     Id: 10,
     Nome: "Mesa Digitalizadora Wacom",
     Preco: 410.0,
-    Imagem: "",
+    Imagem: "./assets/MesaDigitalizadora.png",
     DataCad: "01/04/2026",
   },
 ];
+export default produtos

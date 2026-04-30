@@ -26,16 +26,10 @@ export default function criaNavbar() {
       </div>
 
       <div class="d-flex">
-        <button class="btn-primario" id="btnIrCarrinho">CARRINHO (0)</button>
+        <button class="btn-primario" id="btnIrCarrinho">CARRINHO</button>
       </div>
     </div>
   `;
-  header.appendChild(nav);
-}
 
-export function ativarMenu(botaoClicado) {
-  document.querySelectorAll('.nav-link').forEach(btn => {
-    btn.classList.remove('active', 'fw-bold');
-  });
-  botaoClicado.classList.add('active', 'fw-bold');
+  header.appendChild(nav)
 }
