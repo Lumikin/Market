@@ -5,7 +5,7 @@ export default function criaNavbar() {
   nav.className = "navbar navbar-expand-lg bg-navy shadow-sm navbar-dark";
 
   nav.innerHTML = `
-    <div class="container-fluid">
+    <div class="container-fluid" id="nav">
       <a class="navbar-brand fw-bold" href="#" style="font-family: 'Oswald';">
         HP EXPLORER
       </a>
@@ -20,7 +20,8 @@ export default function criaNavbar() {
             <button class="nav-link fw-bold text-primary active" id="btnHome">Home</button>
           </li>
           <li class="nav-item">
-            <button class="nav-link" id="btnFavoritos"> 🛒 Carrinho</button>
+            <button class="nav-link" id="btnFavoritos"> 
+            <p>🛒 Carrinho</p></button>
           </li>
         </ul>
       </div>
