@@ -1,4 +1,4 @@
-<div align='center'> 
+﻿<div align='center'> 
 <h1> 🛒 Market </h1>
 <div> 
 <p> Esse é um projeto academico </p>
