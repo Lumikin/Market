@@ -1,4 +1,4 @@
-import { adicionarAoCarrinho } from "../../storage/carrinho.storage";
+import { adicionarAoCarrinho } from "../../storage/carrinho.storage";   
 
 export default function criarCardProduto(produto) {
     const card = document.createElement('div');
