@@ -1,28 +1,27 @@
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;700&display=swap");
 
 :root {
-  --azul-marinho: #012549; 
-  --cinza: #727272;       
-  --preto: #000000;     
-  --azul-botao: #1E90FF; 
-  --cinza-claro: #E0E0E0;
+  --azul-marinho: #012549;
+  --cinza: #727272;
+  --preto: #000000;
+  --azul-botao: #1e90ff;
+  --cinza-claro: #e0e0e0;
+  --bs-btn-primary: #000000;
 }
 
-
 body {
-  font-family: 'Oswald', sans-serif;
+  font-family: "Oswald", sans-serif;
   margin: 0;
   padding: 0;
 }
 
-
 .btn-primario {
   background-color: var(--azul-botao);
-  color: white;            
-  border-radius: 8px;       
+  color: white;
+  border-radius: 8px;
   border: none;
-  padding: 10px 20px;       
-  font-family: 'Oswald', sans-serif;
+  padding: 10px 20px;
+  font-family: "Oswald", sans-serif;
   transition: 0.2s;
   cursor: pointer;
 }
@@ -31,32 +30,30 @@ body {
   filter: brightness(1.1);
 }
 
-
 .btn-secundario {
   background-color: var(--cinza-claro);
   color: var(--preto);
   border: 1px solid #ccc;
-  border-radius: 1px;       
+  border-radius: 1px;
   padding: 10px 20px;
-  font-family: 'Oswald', sans-serif;
+  font-family: "Oswald", sans-serif;
   cursor: pointer;
 }
 
-
 .page-link {
-    background-color: #fff;
-    color: var(--bs-primary);
-    border: 1px solid #dee2e6;
-    font-family: 'Oswald', sans-serif;
+  background-color: #fff;
+  color: var(--bs-primary);
+  border: 1px solid #dee2e6;
+  font-family: "Oswald", sans-serif;
 }
 
 .page-link:hover {
-    background-color: var(--bs-primary);
-    color: #fff;
+  background-color: var(--bs-primary);
+  color: #fff;
 }
 
 .page-item.active .page-link {
-    background-color: var(--bs-primary);
-    border-color: var(--bs-primary);
-    color: #fff;
+  background-color: var(--bs-primary);
+  border-color: var(--bs-primary);
+  color: #fff;
 }
