@@ -1,59 +1,66 @@
+/* 1. Tipografia Oswald */
 @import url("https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;700&display=swap");
 
 :root {
-  --azul-marinho: #012549;
-  --cinza: #727272;
-  --preto: #000000;
-  --azul-botao: #1e90ff;
-  --cinza-claro: #e0e0e0;
-  --bs-btn-primary: #000000;
+  /* Paleta de Cores do Design System */
+  --primary-navy: #012549;   /* 60% */
+  --secondary-gray: #727272; /* 30% */
+  --tertiary-black: #000000; /* 10% */
+  --action-blue: #1e90ff;    /* Botão Primário */
+  --light-gray: #e0e0e0;     /* Botão Secundário */
 }
 
 body {
   font-family: "Oswald", sans-serif;
   margin: 0;
-  padding: 0;
+  /* Espaçamento superior para a barra fixa (múltiplo de 8) */
+  padding-top: 80px !important; 
+  background-color: #ffffff;
+  color: var(--tertiary-black);
 }
 
+/* Navbar fixa com a cor Primária (60%) */
+.bg-navy {
+  background-color: var(--primary-navy) !important;
+}
+
+/* Botão Primário (Conforme Design System) */
 .btn-primario {
-  background-color: var(--azul-botao);
+  background-color: var(--action-blue);
   color: white;
-  border-radius: 8px;
+  border-radius: 8px; /* Borda 8px exigida */
   border: none;
-  padding: 10px 20px;
+  padding: 8px 24px; /* Escala de 8px */
   font-family: "Oswald", sans-serif;
+  font-weight: 400;
   transition: 0.2s;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .btn-primario:hover {
   filter: brightness(1.1);
 }
 
+/* Botão Secundário */
 .btn-secundario {
-  background-color: var(--cinza-claro);
-  color: var(--preto);
+  background-color: var(--light-gray);
+  color: var(--tertiary-black);
   border: 1px solid #ccc;
-  border-radius: 1px;
-  padding: 10px 20px;
-  font-family: "Oswald", sans-serif;
-  cursor: pointer;
-}
-
-.page-link {
-  background-color: #fff;
-  color: var(--bs-primary);
-  border: 1px solid #dee2e6;
+  border-radius: 4px; 
+  padding: 8px 16px;
   font-family: "Oswald", sans-serif;
 }
 
-.page-link:hover {
-  background-color: var(--bs-primary);
-  color: #fff;
+/* Ajuste de links da Nav */
+.navbar-dark .navbar-nav .nav-link {
+  color: white !important;
+  text-transform: uppercase;
+  padding: 0 16px; /* Escala de 8px */
 }
 
-.page-item.active .page-link {
-  background-color: var(--bs-primary);
-  border-color: var(--bs-primary);
-  color: #fff;
+.navbar-dark .navbar-nav .nav-link.active {
+  font-weight: 700;
 }
