@@ -21,7 +21,7 @@ function botaoCarrinho(botao, produto) {
 export default function ProdutosPage() {
   const app = document.querySelector("#app");
   app.innerHTML = `
-    <h1 class="fw-bold text-primary text-center"> Market </h1>
+    <h1 class="fw-bold text-primary text-center"> Produtos </h1>
     <div class="row mt-4" id="lista-produtos"></div>
   `;
 

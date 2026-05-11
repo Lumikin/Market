@@ -9,14 +9,14 @@ export default function criaNavbar() {
   nav.innerHTML = `
     <div class="container-fluid">
       <a class="navbar-brand fw-bold" href="#" style="font-family: 'Oswald'; letter-spacing: 1px;">
-        HP EXPLORER
+        Espricio Market
       </a>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <div class="collapse navbar-collapse" id="menu">
+      <div class="collapse navbar-collapse" style="font-family: 'Oswald'; id="menu">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
             <button class="nav-link active" id="btnHome" style="background:none; border:none;">HOME</button>

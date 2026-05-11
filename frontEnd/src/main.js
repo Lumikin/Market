@@ -5,12 +5,12 @@ criaNavbar();
 ProdutosPage();
 
 const btnHome = document.querySelector("#btnHome");
-const btnFavoritos = document.querySelector("#btnFavoritos");
+const btnCarrinho = document.querySelector("#btnCarrinho");
 btnHome.addEventListener("click", () => {
   ativarMenu(btnHome);
   ProdutosPage();
 });
-btnFavoritos.addEventListener("click", () => {
-  ativarMenu(btnFavoritos);
+btnCarrinho.addEventListener("click", () => {
+  ativarMenu(btnCarrinho);
   carrinhoProdutosPage();
 });
