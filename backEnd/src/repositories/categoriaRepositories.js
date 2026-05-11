@@ -18,5 +18,18 @@ const categoriaRepositories = {
     const [rows] = await connection.execute(sql, values);
     return rows;
   },
+  alterar: async categoria => {
+    const sql =
+      "UPDATE categorias SET Nome=?, Descricao=? WHERE idCategoria=?;";
+    const values = [categoria.nome, categoria.descricao, categoria.id];
+    const [rows] = await connection.execute(sql, values);
+    return rows;
+  },
+  deletar: async id => {
+    const sql = "DELETE FROM categorias WHERE idCategoria=?;";
+    const values = [id];
+    const [rows] = await connection.execute(sql, values);
+    return rows;
+  },
 };
 export default categoriaRepositories;
