@@ -9,19 +9,19 @@ import {
 
 function botaoCarrinho(botao, produto) {
   if (produto) {
-    botao.className = "btn btn-danger w-100";
+    botao.className = "btn-remover w-100 justify-content-center";
     botao.innerText = "Remover do carrinho";
     return;
   }
 
-  botao.className = "btn btn-primary w-100";
+  botao.className = "btn-primario w-100 justify-content-center";
   botao.innerText = "Adicionar ao carrinho";
 }
 
 export default function ProdutosPage() {
   const app = document.querySelector("#app");
   app.innerHTML = `
-    <h1 class="fw-bold text-primary text-center"> Market </h1>
+    <h1 class="titulo-pagina text-center">Market</h1>
     <div class="row mt-4" id="lista-produtos"></div>
   `;
 
