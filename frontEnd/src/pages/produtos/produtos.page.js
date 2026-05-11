@@ -9,12 +9,12 @@ import {
 
 function botaoCarrinho(botao, produto) {
   if (produto) {
-    botao.className = "btn btn-danger w-100";
+    botao.className = "btn-remover w-100 justify-content-center";
     botao.innerText = "Remover do carrinho";
     return;
   }
 
-  botao.className = "btn btn-primary w-100";
+  botao.className = "btn-primario w-100 justify-content-center";
   botao.innerText = "Adicionar ao carrinho";
 }
 
