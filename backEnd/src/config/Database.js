@@ -31,4 +31,8 @@ class Databse {
   }
 }
 
+<<<<<<< HEAD
 export const connection = Databse.getInstance().getPool();
+=======
+export const connection = Databse.getInstance().getPool();
+>>>>>>> bfa9f9d9f8ae3974d8740861fa9ddfcf671fc5e2

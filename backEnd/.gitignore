@@ -141,7 +141,10 @@ dist
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .vite/
+<<<<<<< HEAD
 
 .env
 node_modules
 package-lock.json
+=======
+>>>>>>> bfa9f9d9f8ae3974d8740861fa9ddfcf671fc5e2

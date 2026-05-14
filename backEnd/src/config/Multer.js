@@ -5,7 +5,11 @@ import fs from "fs";
 
 const baseUploadDir = path.resolve(process.cwd(), "uploads");
 
+<<<<<<< HEAD
 const verificaDir = dir => {
+=======
+const verificaDir = (dir) => {
+>>>>>>> bfa9f9d9f8ae3974d8740861fa9ddfcf671fc5e2
   if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir, { recursive: true });
   }
@@ -41,4 +45,8 @@ const createMulter = ({ folder, allowedTypes, fileSize }) => {
   });
 };
 
+<<<<<<< HEAD
 export default createMulter;
+=======
+export default createMulter;
+>>>>>>> bfa9f9d9f8ae3974d8740861fa9ddfcf671fc5e2
