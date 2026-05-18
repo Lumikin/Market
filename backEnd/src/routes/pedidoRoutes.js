@@ -3,7 +3,7 @@ import pedidoController from "../controllers/pedidoController.js";
 
 const pedidoRoutes = Router();
 
-ppedidoRoutes.get("/", pedidoController.selecionar);
+pedidoRoutes.get("/", pedidoController.selecionar);
 pedidoRoutes.post("/", pedidoController.criar);
 pedidoRoutes.get("/:id", pedidoController.selecionarId);
 pedidoRoutes.put("/:id", pedidoController.atualizarPedido);

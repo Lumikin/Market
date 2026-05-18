@@ -10,7 +10,7 @@
 <div> 
 <p>
   🌐 <a href="./frontEnd/frontend.md">FrontEnd</a><br>
-  ⚙️ <a href="./backEnd/backend.md">BackEnd</a><br>
+  ⚙️ <a href="./docs/backend/backend.md">BackEnd</a><br>
   🗄️ <a href="">DataBase</a>
 </p>
 </div>

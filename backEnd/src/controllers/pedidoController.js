@@ -1,4 +1,4 @@
-import pedidoRepositories from "../repositories/pedidoRepository.js";
+import pedidoRepositories from "../repositories/pedidoRepositories.js";
 import { Pedido } from "../models/Pedido.js";
 import { ItensPedido } from "../models/Item_Pedido.js";
 import { statusPedido } from "../enum/statusPedido.js";
@@ -6,7 +6,7 @@ import { statusPedido } from "../enum/statusPedido.js";
 const pedidoController = {
     selecionar: async (req, res) => {
         try {
-            const result = await pedidoRepositories.getPedido();
+            const result = await pedidoRepositories.get();
             
             if (!result || result.length === 0) {
                 return res.status(200).json({message: "Nenhum pedido encontrado"});
@@ -21,7 +21,7 @@ const pedidoController = {
     
     selecionarItens: async (req, res) => {
         try {
-            const result = await pedidoRepositories.getItem();
+            const result = await pedidoRepositories.getId();
             
             if (!result || result.length === 0) {
                 return res.status(200).json({message: "Nenhum item encontrado"});
@@ -37,7 +37,7 @@ const pedidoController = {
     selecionarId: async (req, res) => {
         try {
             const id = Number(req.params.id);
-            const result = await pedidoRepositories.getPedidoId(id);
+            const result = await pedidoRepositories.getId(id);
             
             if (!result || result.length === 0) {
                 return res.status(404).json({message: "Pedido não encontrado!"});

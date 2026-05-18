@@ -7,7 +7,6 @@ const produtoRoutes = Router();
 produtoRoutes.get("/", produtoController.listarProdutos);
 produtoRoutes.get("/:id", produtoController.listarIdProduto);
 produtoRoutes.post("/", uploadImage, produtoController.criarProdutos);
-
 produtoRoutes.delete("/:id", produtoController.deletarProduto);
 
 export default produtoRoutes;
