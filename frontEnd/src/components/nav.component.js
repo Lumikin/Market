@@ -1,28 +1,49 @@
 export default function criaNavbar() {
   const header = document.querySelector("header");
-  const nav = document.createElement("nav");
+  header.innerHTML = ""; 
 
-  nav.className = "navbar navbar-expand-lg bg-navy shadow-sm navbar-dark";
+  const nav = document.createElement("nav");
+  // navbar-dark garante que o ícone do menu (hambúrguer) fique branco
+  nav.className = "navbar navbar-expand-lg bg-navy shadow-sm navbar-dark fixed-top";
 
   nav.innerHTML = `
     <div class="container-fluid">
-      <a class="navbar-brand fw-bold" href="#" style="font-family: 'Oswald';">
+      <a class="navbar-brand fw-bold" href="#" style="font-family: 'Oswald'; letter-spacing: 1px;">
+<<<<<<< HEAD
+<<<<<<< HEAD
+        Espricio Market
+=======
         HP EXPLORER
+>>>>>>> bfa9f9d9f8ae3974d8740861fa9ddfcf671fc5e2
+=======
+        Espricio Market
+>>>>>>> f39a8e4660e3651b854f0605774b8a27b4853b22
       </a>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
         <span class="navbar-toggler-icon"></span>
       </button>
 
-  <div class="collapse navbar-collapse justify-content-center" id="menu">
-        <ul class="navbar-nav mb-2 mb-lg-0">
+<<<<<<< HEAD
+<<<<<<< HEAD
+      <div class="collapse navbar-collapse" style="font-family: 'Oswald'; id="menu">
+=======
+      <div class="collapse navbar-collapse" id="menu">
+>>>>>>> bfa9f9d9f8ae3974d8740861fa9ddfcf671fc5e2
+=======
+      <div class="collapse navbar-collapse" style="font-family: 'Oswald'; id="menu">
+>>>>>>> f39a8e4660e3651b854f0605774b8a27b4853b22
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <button class="nav-link fw-bold text-primary active" id="btnHome">Home</button>
-          </li>
-          <li class="nav-item">
-            <button class="nav-link" id="btnFavoritos"> 🛒 Carrinho</button>
+            <button class="nav-link active" id="btnHome" style="background:none; border:none;">HOME</button>
           </li>
         </ul>
+
+        <div class="d-flex">
+          <button class="btn-primario" id="btnCarrinho"> 
+            <span>🛒</span> CARRINHO (0)
+          </button>
+        </div>
       </div>
     </div>
   `;
@@ -32,8 +53,7 @@ export default function criaNavbar() {
 
 export function ativarMenu(botaoClicado) {
   document.querySelectorAll(".nav-link").forEach(btn => {
-    btn.classList.remove("active", "text-primary", "fw-bold");
+    btn.classList.remove("active", "fw-bold");
   });
-
-  botaoClicado.classList.add("active", "text-primary", "fw-bold");
+  botaoClicado.classList.add("active", "fw-bold");
 }
