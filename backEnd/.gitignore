@@ -145,3 +145,7 @@ vite.config.ts.timestamp-*
 .env
 node_modules
 package-lock.json
+
+.env
+node_modules
+package-lock.json

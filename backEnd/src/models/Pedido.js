@@ -27,16 +27,16 @@ export class Pedido {
 
   // Setters //
   set id(value) {
-    this.validarId(value);
+    this.#validarId(value);
     return (this.#id = value);
   }
   set subTotal(value) {
-    this.validarSubTotal(value);
+    this.#validarSubTotal(value);
     return (this.#subtotal = value);
   }
   set status(value) {
-    this.validarStatus(value);
-    return (this.#id = value);
+    this.#validarStatus(value);
+    return (this.#status = value);
   }
   // Métodos auxiliares //
   #validarId(value) {
@@ -45,9 +45,9 @@ export class Pedido {
     }
   }
 
-  #valida(value) {
-    if (!value && value < 0) {
-      throw new Error("Verifique o ID informado");
+  #validarStatus(value) {
+    if (!value || typeof value !== "string") {
+      throw new Error("Status inválido");
     }
   }
 
