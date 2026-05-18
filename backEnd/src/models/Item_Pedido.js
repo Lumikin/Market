@@ -5,7 +5,6 @@ export class ItensPedido {
   #quantidade;
   #valorItem;
 
-  // Contructor //
   constructor(pPedidoId, pProdutoId, pQuantidade, pValorItem, pID) {
     this.#pedidoId = pPedidoId;
     this.#produtoId = pProdutoId;
@@ -13,57 +12,64 @@ export class ItensPedido {
     this.#valorItem = pValorItem;
     this.#id = pID;
   }
-  // Getters //
+
+  // Getters
   get id() {
     return this.#id;
   }
+
   get pedidoId() {
     return this.#pedidoId;
   }
+
   get produtoId() {
     return this.#produtoId;
   }
+
   get quantidade() {
     return this.#quantidade;
   }
+
   get valorItem() {
-    return this.#quantidade;
+    return this.#valorItem;
   }
 
-  // Setters //
+  // Setters
   set id(value) {
     this.#validarId(value);
-    return (this.#id = value);
+    this.#id = value;
   }
 
   set pedidoId(value) {
     this.#validarPedidoId(value);
-    return (this.#pedidoId = value);
+    this.#pedidoId = value;
   }
+
   set produtoId(value) {
-    this.validarprodutoId(value);
-    return (this.#produtoId = value);
+    this.#validarProdutoId(value);
+    this.#produtoId = value;
   }
+
   set quantidade(value) {
-    this.validarquantidade(value);
-    return (this.#id = value);
+    this.#validarQuantidade(value);
+    this.#quantidade = value;
   }
+
   set valorItem(value) {
-    this.validarquantidade(value);
-    return (this.#id = value);
+    this.#validarValorItem(value);
+    this.#valorItem = value;
   }
 
-  // Métodos auxiliares //
-
+  // Métodos auxiliares
   #validarId(value) {
-    if (!value && value < 0) {
+    if (value <= 0) {
       throw new Error("Verifique o ID informado");
     }
   }
 
   #validarPedidoId(value) {
-    if (value && value <= 0) {
-      throw new Error("Verifique o ID do produto informado");
+    if (!value || value <= 0) {
+      throw new Error("Verifique o ID do pedido informado");
     }
   }
 
@@ -73,40 +79,31 @@ export class ItensPedido {
     }
   }
 
-  #validarSubTotal(value) {
+  #validarQuantidade(value) {
     if (!value || value <= 0) {
-      throw new Error("Não foi possivel obter o subtotal");
+      throw new Error("Informe uma quantidade válida");
     }
   }
+
   #validarValorItem(value) {
     if (!value || value <= 0) {
-      throw new Error("Infomre um valor para o item");
+      throw new Error("Informe um valor válido para o item");
     }
   }
 
   static calcularSubTotal(itens) {
-    return (itens.reduce(
-      (total, item) => total + (item.valorItem * item.quantidade),0
-    ));
+    return itens.reduce(
+      (total, item) => total + item.valorItem * item.quantidade,
+      0
+    );
   }
 
-  //Desing Pattern
+  // Factory Methods
   static criar(dados) {
-    return new ItensPedido(
-      dados.pedidoId,
-      dados.produtoId,
-      dados.quantidade,
-      dados.valorItem,
-      null,
-    );
+    return new ItensPedido(dados.pedidoId, dados.produtoId, dados.quantidade, dados.valorItem, null);
   }
+
   static editar(dados, id) {
-    return new ItensPedido(
-      dados.pedidoId,
-      dados.produtoId,
-      dados.quantidade,
-      dados.valorItem,
-      id,
-    );
+    return new ItensPedido(dados.pedidoId, dados.produtoId, dados.quantidade, dados.valorItem, id);
   }
 }
