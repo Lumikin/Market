@@ -49,7 +49,52 @@ const produtoController = {
     }
   },
   criarProdutos: async (req, res) => {
-    
+    try {
+      const { idCategoria, nome, descricao, preco, estoque } = req.body;
+      const Imagem = req.file.path;
+      const produto = Produtos.criar({
+        idCategoria,
+        nome,
+        descricao,
+        preco,
+        Imagem,
+        estoque,
+      });
+      const result = await produtoRepositories.criar(produto);
+      console.log("Produto criado: \n", result);
+      res.status(201).json({
+        Message: "Produto criado com sucesso",
+        Data: result,
+      });
+    } catch (error) {
+      console.log(error);
+      res.status(400).json({
+        message: "Ocorreu um erro no servidor",
+        Error: error.message,
+      });
+    }
+  },
+  deletarProduto: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const buscaId = produtoRepositories.listarId(id);
+      if (buscaId.length === 0 || !id) {
+        return res.status(400).json({
+          Message: "Insira um Id válido",
+        });
+      }
+      const result = await produtoRepositories.deletar(id);
+      console.log("Produto Deletado", result);
+      res.status(200).json({
+        Message: "Produto deletado!",
+        Data: result,
+      });
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({
+        message: "Ocorreu um erro no servidor",
+      });
+    }
   },
 };
 export default produtoController;
