@@ -1,3 +1,5 @@
+import fs from "fs";
+import path from "path";
 import produtoRepositories from "../repositories/produtoRepositories.js";
 import { Produtos } from "../models/Produtos.js";
 
@@ -84,6 +86,57 @@ const produtoController = {
       console.log("Produto criado: \n", result);
       res.status(201).json({
         Message: "Produto criado com sucesso",
+        Data: result,
+      });
+    } catch (error) {
+      console.log(error);
+      res.status(400).json({
+        message: "Ocorreu um erro no servidor",
+        Error: error.message,
+      });
+    }
+  },
+  alterarProduto: async (req, res) => {
+    try {
+      const { id } = req.params;
+      let { idCategoria, nome, descricao, preco, estoque } = req.body;
+
+      if (!id || isNaN(id) || Number(id) <= 0) {
+        return res.status(400).json({
+          Message: "Digite um id válido",
+        });
+      }
+
+      const produtoExistente = await produtoRepositories.listarId(id);
+      if (produtoExistente.length === 0) {
+        return res.status(400).json({
+          Message: "Produto não encontrado",
+        });
+      }
+      const Imagem = `uploads/images/${req.file.filename}`; // --- Caminho relativo da imagem --- //
+      const produto = Produtos.editar(
+        {
+          idCategoria,
+          nome,
+          descricao,
+          preco,
+          Imagem,
+          estoque,
+        },
+        id,
+      );
+
+      const result = await produtoRepositories.alterar(produto);
+
+      if (result.affectedRows === 0) {
+        return res.status(400).json({
+          Message: "Erro ao alterar produto",
+        });
+      }
+
+      console.log("Produto alterado", result);
+      res.status(200).json({
+        Message: "Produto alterado com sucesso",
         Data: result,
       });
     } catch (error) {

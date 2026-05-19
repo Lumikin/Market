@@ -26,6 +26,21 @@ const produtoRepositories = {
     const [rows] = await connection.execute(sql, values);
     return rows;
   },
+  alterar: async produto => {
+    const sql =
+      "UPDATE produtos SET idCategoria=?, nome=?, descricao=?, preco=?, Imagem=?, estoque=? WHERE idProduto=?;";
+    const values = [
+      produto.idCategoria,
+      produto.nome,
+      produto.descricao,
+      produto.preco,
+      produto.Imagem,
+      produto.estoque,
+      produto.id,
+    ];
+    const [rows] = await connection.execute(sql, values);
+    return rows;
+  },
   deletar: async id => {
     const sql = "DELETE FROM produtos WHERE idProduto=?;";
     const values = [id];
