@@ -42,7 +42,6 @@ const produtoController = {
       if (result.length === 0) {
         return res.status(200).json({
           Message: "Esse id não existe",
-          Data: result,
         });
       }
 
@@ -61,7 +60,15 @@ const produtoController = {
   criarProdutos: async (req, res) => {
     try {
       const { idCategoria, nome, descricao, preco, estoque } = req.body;
-      const Imagem = req.file.path;
+
+      if (!req.file) {
+        return res.status(400).json({
+          message: "Arquivo de imagem não enviado",
+        });
+      }
+
+      const Imagem = `uploads/images/${req.file.filename}`; // --- Caminho relativo da imagem --- //
+
       const produto = Produtos.criar({
         idCategoria,
         nome,
@@ -90,19 +97,19 @@ const produtoController = {
   deletarProduto: async (req, res) => {
     try {
       const { id } = req.params;
-      const buscaId = produtoRepositories.listarId(id);
-      
+      const buscaId = await produtoRepositories.listarId(id);
+
       // --- Verificação de ID válido --- //
-      if (buscaId.length === 0 || !id) {
+      if (!id || buscaId.length === 0) {
         return res.status(400).json({
           Message: "Insira um Id válido",
         });
       }
 
       const result = await produtoRepositories.deletar(id);
-      
+
       console.log("Produto Deletado", result);
-      
+
       // --- Mensagem de produto deletado --- //
       res.status(200).json({
         Message: "Produto deletado!",
