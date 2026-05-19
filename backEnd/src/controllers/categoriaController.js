@@ -8,7 +8,6 @@ const categoriaController = {
       if (result.length === 0) {
         return res.status(200).json({
           Message: "Categorias não existem nessa tabela",
-          Data: result,
         });
       }
       res.status(200).json({
