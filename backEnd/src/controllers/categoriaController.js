@@ -33,7 +33,6 @@ const categoriaController = {
       if (result.length === 0) {
         return res.status(200).json({
           Message: "Esse id não existe",
-          Data: result,
         });
       }
       res.status(200).json({
@@ -69,6 +68,11 @@ const categoriaController = {
     try {
       const { id } = req.params;
       const { nome, descricao } = req.body;
+      if (!nome.trim() || !descricao.trim()) {
+        return res.status(400).json({
+          Message: "Preencha os campos nome e descrição",
+        });
+      }
       if (!id || isNaN(id) || Number(id) <= 0) {
         return res.status(400).json({
           Message: "Digite um id valido",
@@ -76,7 +80,7 @@ const categoriaController = {
       }
       const categoria = Categoria.editar({ nome, descricao }, id);
       const result = await categoriaRepositories.alterar(categoria);
-      console.log("Categoria alterada!",result);
+      console.log("Categoria alterada!", result);
       if (result.affectedRows === 0) {
         return res.status(400).json({
           Message: "Erro ao alterar categoria",
@@ -104,7 +108,7 @@ const categoriaController = {
         });
       }
       const result = await categoriaRepositories.deletar(id);
-      console.log("Categoria Deletada!", result)
+      console.log("Categoria Deletada!", result);
       if (result.affectedRows === 0) {
         return res.status(400).json({
           Message: "Erro ao deletar",
