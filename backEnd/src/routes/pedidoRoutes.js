@@ -6,12 +6,10 @@ const pedidoRoutes = Router();
 pedidoRoutes.get("/", pedidoController.selecionar);
 pedidoRoutes.post("/", pedidoController.criar);
 pedidoRoutes.get("/:id", pedidoController.selecionarId);
-pedidoRoutes.put("/:id", pedidoController.atualizarPedido);
+pedidoRoutes.put("/:id", pedidoController.atualizar);
 pedidoRoutes.delete("/:id", pedidoController.deletar);
 
-// --- Itens --- //
-pedidoRoutes.get("/:id/items", pedidoController.selecionarItens);
-pedidoRoutes.post("/:id/items", pedidoController.criarItem);
-pedidoRoutes.delete("/:id/items/:idItem", pedidoController.deletarItemPedido);
+
+pedidoRoutes.get("/itens/itens", pedidoController.selecionar);
 
 export default pedidoRoutes;
