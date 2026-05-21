@@ -6,6 +6,7 @@ import {
   listarcarrinho,
   removerCarrinho,
   salvarCarrinho,
+  contarItensCarrinho, // Importado para atualizar o número (0) lá no topo
 } from "../../storage/carrinho.storage.js";
 
 function buscarProdutoCarrinho(produto) {
@@ -73,6 +74,16 @@ export default function ProdutosPage() {
     <div class="row mt-4" id="lista-produtos"></div>
   `;
 
+  // Função interna simples para atualizar o (0) do botão da navbar superior
+  const atualizarNumeroNavbar = () => {
+    const btnCarrinhoNav = document.querySelector("#btnCarrinho");
+    if (btnCarrinhoNav) {
+      const totalItens = contarItensCarrinho();
+      // Mantém o ícone de mercado que arrumamos antes e atualiza o número
+      btnCarrinhoNav.innerHTML = `<span style="margin-right: 5px;">&#128722;</span> CARRINHO (${totalItens})`;
+    }
+  };
+
   const row = document.querySelector("#lista-produtos");
   produtos.forEach(produto => {
     let produtoNoCarrinho = isCarrinho(produto);
@@ -89,16 +100,17 @@ export default function ProdutosPage() {
     botaoCarrinho(button, produtoNoCarrinho);
 
     button.addEventListener("click", () => {
-      Carrinho = !Carrinho;
-
+      // Correção lógica: Se já está no carrinho, remove. Se não está, adiciona!
       if (produtoNoCarrinho) {
-        salvarCarrinho(produto, controleQuantidade.getQuantidade());
-      } else {
         removerCarrinho(produto);
+        produtoNoCarrinho = false;
+      } else {
+        salvarCarrinho(produto, controleQuantidade.getQuantidade());
+        produtoNoCarrinho = true;
       }
 
       botaoCarrinho(button, produtoNoCarrinho);
-      atualizarContadorCarrinho();
+      atualizarNumeroNavbar(); // Atualiza o topo na hora
     });
 
     coluna.appendChild(card);
