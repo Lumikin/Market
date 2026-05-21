@@ -1,13 +1,14 @@
-import produtos from "../../../../backEnd/data/produtos.data.js";
 import criarCardProduto from "../../components/card.component.js";
 import criarColunas from "../../components/shared/coluna-bootstrap.component.js";
+import produtosMock from "../../../../backEnd/data/produtos.data.js";
 import {
   isCarrinho,
   listarcarrinho,
   removerCarrinho,
   salvarCarrinho,
-  contarItensCarrinho, // Importado para atualizar o número (0) lá no topo
+  contarItensCarrinho,
 } from "../../storage/carrinho.storage.js";
+import { buscarProdutos } from "../../services/produtos.api.js";
 
 function buscarProdutoCarrinho(produto) {
   return listarcarrinho().find(item => item.Id === produto.Id);
@@ -67,24 +68,34 @@ function botaoCarrinho(botao, produtoNoCarrinho) {
   botao.innerText = "Adicionar ao carrinho";
 }
 
-export default function ProdutosPage() {
+export default async function ProdutosPage() {
   const app = document.querySelector("#app");
   app.innerHTML = `
     <h1 class="titulo-pagina text-center">Produtos</h1>
     <div class="row mt-4" id="lista-produtos"></div>
   `;
 
-  // Função interna simples para atualizar o (0) do botão da navbar superior
   const atualizarNumeroNavbar = () => {
     const btnCarrinhoNav = document.querySelector("#btnCarrinho");
     if (btnCarrinhoNav) {
       const totalItens = contarItensCarrinho();
-      // Mantém o ícone de mercado que arrumamos antes e atualiza o número
       btnCarrinhoNav.innerHTML = `<span style="margin-right: 5px;">&#128722;</span> CARRINHO (${totalItens})`;
     }
   };
 
   const row = document.querySelector("#lista-produtos");
+  row.innerHTML = `<div class="col-12 text-center py-5">Carregando produtos...</div>`;
+
+  let produtos = await buscarProdutos();
+  console.log(produtos);
+
+  if (!produtos || produtos.length === 0) {
+    produtos = produtosMock;
+    console.error("Usando Mock!");
+  }
+
+  row.innerHTML = "";
+
   produtos.forEach(produto => {
     let produtoNoCarrinho = isCarrinho(produto);
     const produtoCarrinho = buscarProdutoCarrinho(produto);
@@ -100,7 +111,6 @@ export default function ProdutosPage() {
     botaoCarrinho(button, produtoNoCarrinho);
 
     button.addEventListener("click", () => {
-      // Correção lógica: Se já está no carrinho, remove. Se não está, adiciona!
       if (produtoNoCarrinho) {
         removerCarrinho(produto);
         produtoNoCarrinho = false;
@@ -110,7 +120,7 @@ export default function ProdutosPage() {
       }
 
       botaoCarrinho(button, produtoNoCarrinho);
-      atualizarNumeroNavbar(); // Atualiza o topo na hora
+      atualizarNumeroNavbar();
     });
 
     coluna.appendChild(card);

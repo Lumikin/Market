@@ -67,7 +67,6 @@ export default function carrinhoProdutosPage() {
   // Executa a soma assim que abre a página
   atualizarTotalAutomatico();
 
-  // Renderiza os produtos na tela usando a lógica original de vocês
   carrinho.forEach(produto => {
     const coluna = criarColunas();
     const card = criarCardProduto(produto);

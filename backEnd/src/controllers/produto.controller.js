@@ -8,7 +8,7 @@ const produtoController = {
 
       if (result.length === 0) {
         return res.status(200).json({
-          Message: "Produtos não existem nessa tabela",
+          Message: "Produtos nï¿½o existem nessa tabela",
         });
       }
 
@@ -30,7 +30,7 @@ const produtoController = {
 
       if (!id || id === undefined || isNaN(id) || id < 0) {
         return res.status(400).json({
-          Message: "Digite um id válido",
+          Message: "Digite um id vï¿½lido",
         });
       }
 
@@ -38,7 +38,7 @@ const produtoController = {
 
       if (result.length === 0) {
         return res.status(200).json({
-          Message: "Esse id não existe",
+          Message: "Esse id nï¿½o existe",
         });
       }
 
@@ -60,7 +60,7 @@ const produtoController = {
 
       if (!req.file) {
         return res.status(400).json({
-          message: "Arquivo de imagem não enviado",
+          message: "Arquivo de imagem nï¿½o enviado",
         });
       }
 
@@ -98,20 +98,20 @@ const produtoController = {
 
       if (!id || isNaN(id) || Number(id) <= 0) {
         return res.status(400).json({
-          Message: "Digite um id válido",
+          Message: "Digite um id vï¿½lido",
         });
       }
 
       const produtoExistente = await produtoRepositories.listarId(id);
       if (produtoExistente.length === 0) {
         return res.status(400).json({
-          Message: "Produto não encontrado",
+          Message: "Produto nï¿½o encontrado",
         });
       }
 
       if (!req.file) {
         return res.status(400).json({
-          message: "Arquivo de imagem não enviado",
+          message: "Arquivo de imagem nï¿½o enviado",
         });
       }
 
@@ -158,7 +158,7 @@ const produtoController = {
 
       if (!id || buscaId.length === 0) {
         return res.status(400).json({
-          Message: "Insira um Id válido",
+          Message: "Insira um Id vï¿½lido",
         });
       }
 
@@ -176,6 +176,7 @@ const produtoController = {
       });
     }
   },
+  listarImagem: async () => {},
 };
 
 export default produtoController;

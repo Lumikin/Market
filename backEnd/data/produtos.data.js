@@ -1,5 +1,5 @@
 // --- Informações temporarias para nao precisar de API --- //
-const produtos = [
+const produtosMock = [
   {
     Id: 1,
     Nome: "Smartphone Galaxy S24",
@@ -108,4 +108,4 @@ const produtos = [
     DataCad: "01/04/2026",
   },
 ];
-export default produtos;
+export default produtosMock;
