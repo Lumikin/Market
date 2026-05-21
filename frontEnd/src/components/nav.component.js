@@ -24,7 +24,7 @@ export default function criaNavbar() {
 
         <div class="d-flex">
           <button class="btn-primario" id="btnCarrinho">
-            <span>??</span> CARRINHO (0)
+            <span style="margin-right: 5px;">&#128722;</span> CARRINHO (0)
           </button>
         </div>
       </div>
