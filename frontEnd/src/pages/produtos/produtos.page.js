@@ -1,14 +1,63 @@
 import produtos from "../../../../backEnd/data/produtos.data.js";
 import criarCardProduto from "../../components/card.component.js";
+import { atualizarContadorCarrinho } from "../../components/nav.component.js";
 import criarColunas from "../../components/shared/coluna-bootstrap.component.js";
 import {
   isCarrinho,
+  listarcarrinho,
   removerCarrinho,
   salvarCarrinho,
 } from "../../storage/carrinho.storage.js";
 
-function botaoCarrinho(botao, produto) {
-  if (produto) {
+function buscarProdutoCarrinho(produto) {
+  return listarcarrinho().find(item => item.Id === produto.Id);
+}
+
+function criarControleQuantidade(produto, quantidadeInicial = 1) {
+  const quantidadeMaxima = produto.Quantidade || 99;
+  let quantidade = Math.min(quantidadeInicial, quantidadeMaxima);
+
+  const controle = document.createElement("div");
+  controle.className = "controle-quantidade";
+
+  const botaoMenos = document.createElement("button");
+  botaoMenos.type = "button";
+  botaoMenos.className = "btn-quantidade";
+  botaoMenos.innerText = "-";
+
+  const valor = document.createElement("span");
+  valor.className = "quantidade-valor";
+
+  const botaoMais = document.createElement("button");
+  botaoMais.type = "button";
+  botaoMais.className = "btn-quantidade";
+  botaoMais.innerText = "+";
+
+  const atualizarValor = () => {
+    valor.innerText = quantidade;
+    botaoMenos.disabled = quantidade === 1;
+    botaoMais.disabled = quantidade === quantidadeMaxima;
+  };
+
+  botaoMenos.addEventListener("click", () => {
+    quantidade = Math.max(1, quantidade - 1);
+    atualizarValor();
+  });
+
+  botaoMais.addEventListener("click", () => {
+    quantidade = Math.min(quantidadeMaxima, quantidade + 1);
+    atualizarValor();
+  });
+
+  controle.getQuantidade = () => quantidade;
+  controle.append(botaoMenos, valor, botaoMais);
+  atualizarValor();
+
+  return controle;
+}
+
+function botaoCarrinho(botao, produtoNoCarrinho) {
+  if (produtoNoCarrinho) {
     botao.className = "btn-remover w-100 justify-content-center";
     botao.innerText = "Remover do carrinho";
     return;
@@ -21,46 +70,43 @@ function botaoCarrinho(botao, produto) {
 export default function ProdutosPage() {
   const app = document.querySelector("#app");
   app.innerHTML = `
-<<<<<<< HEAD
-<<<<<<< HEAD
-    <h1 class="fw-bold text-primary text-center"> Produtos </h1>
-=======
-    <h1 class="titulo-pagina text-center">Market</h1>
->>>>>>> bfa9f9d9f8ae3974d8740861fa9ddfcf671fc5e2
-=======
-    <h1 class="fw-bold text-primary text-center"> Produtos </h1>
->>>>>>> f39a8e4660e3651b854f0605774b8a27b4853b22
-    <div class="row mt-4" id="lista-produtos"></div>
+   <h1 class="fw-bold text-center" style="color: #DB8787;">Produtos</h1>
+<div class="row mt-4" id="lista-produtos"></div>
   `;
 
   const row = document.querySelector("#lista-produtos");
   produtos.forEach(produto => {
-    let Carrinho = isCarrinho(produto);
+    let produtoNoCarrinho = isCarrinho(produto);
+    const produtoCarrinho = buscarProdutoCarrinho(produto);
     const coluna = criarColunas();
     const card = criarCardProduto(produto);
     const button = card.querySelector("button");
-    botaoCarrinho(button, Carrinho);
+    const controleQuantidade = criarControleQuantidade(
+      produto,
+      produtoCarrinho?.QuantidadeCarrinho || 1,
+    );
+
+    button.before(controleQuantidade);
+    botaoCarrinho(button, produtoNoCarrinho);
 
     button.addEventListener("click", () => {
-      Carrinho = !Carrinho; // Inverte para o else
+      produtoNoCarrinho = !produtoNoCarrinho;
 
-      if (Carrinho) {
-        salvarCarrinho(produto);
+      if (produtoNoCarrinho) {
+        salvarCarrinho(produto, controleQuantidade.getQuantidade());
       } else {
         removerCarrinho(produto);
       }
 
-      botaoCarrinho(button, Carrinho);
+      botaoCarrinho(button, produtoNoCarrinho);
+      atualizarContadorCarrinho();
     });
 
     coluna.appendChild(card);
     row.appendChild(coluna);
   });
-
-  // const produtoImage = produtos.forEach(produto => {
-  //   console.log(produto.Imagem);
-  // });
 }
+
 export function ativarMenu(botaoClicado) {
   document.querySelectorAll(".nav-link").forEach(btn => {
     btn.classList.remove("active", "text-primary", "fw-bold");

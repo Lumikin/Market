@@ -79,6 +79,62 @@ textarea {
   filter: brightness(1.1);
 }
 
+.carrinho-contador {
+  background-color: white;
+  color: var(--primary-navy);
+  border-radius: 999px;
+  min-width: 24px;
+  height: 24px;
+  padding: 0 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
+
+.controle-quantidade {
+  display: grid;
+  grid-template-columns: 40px 1fr 40px;
+  align-items: center;
+  gap: 8px;
+  margin: 12px 0;
+}
+
+.btn-quantidade {
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--secondary-gray);
+  border-radius: 8px;
+  background-color: var(--light-gray);
+  color: var(--primary-navy);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.btn-quantidade:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.quantidade-valor {
+  min-height: 40px;
+  border: 1px solid var(--secondary-gray);
+  border-radius: 8px;
+  color: var(--primary-navy);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
+
+.quantidade-carrinho {
+  color: var(--primary-navy);
+  font-weight: 700;
+  margin: 8px 0 12px;
+}
+
 /* Botão Secundário */
 .btn-secundario {
   background-color: var(--light-gray);
