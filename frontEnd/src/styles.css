@@ -1,157 +1,153 @@
+/* 1. DEFINIÇÃO DE VARIÁVEIS (DESIGN SYSTEM) */
+/* O seletor :root define variáveis que podem ser usadas em todo o projeto, facilitando trocas de cores globais */
 :root {
-  /* Paleta Corporativa */
-  --primary-navy: #DB8787;   /* Jet Black */
-  --secondary-gray: #E4CFCF; /* Slate Grey */
-  --tertiary-black: #E6E6E6; /* Lavender Grey */
+  --primary-navy: #DB8787;   /* Armazena o tom rosado principal (usado em títulos e na navbar) */
+  --secondary-gray: #E4CFCF; /* Armazena um cinza rosado para bordas e elementos sutis */
+  --tertiary-black: #E6E6E6; /* Armazena um tom de cinza claro, usado aqui como cor de texto padrão */
 
-  /* Ações e botões */
-  --action-blue:  #E1B7B7;    /* Powder Blue */
-  --light-gray: #E6E6E6;
-
-  /* Mantido */
-  --danger-red: #D02828;
+  --action-blue:  #E1B7B7;   /* Define a cor padrão para botões de ação e interação */
+  --light-gray: #E6E6E6;     /* Define uma cor de fundo neutra para botões de quantidade ou campos */
+  --danger-red: #D02828;     /* Define o tom de vermelho para ações destrutivas (como remover itens) */
 }
+
+/* 2. CONFIGURAÇÕES GERAIS DO DOCUMENTO */
 body {
-  font-family: "Oswald", sans-serif;
-  margin: 0;
-  /* Espaçamento superior para a barra fixa (múltiplo de 8) */
-  padding-top: 80px !important;
-  background-color: #ffffff;
-  color: var(--tertiary-black);
+  font-family: "Oswald", sans-serif; /* Define a fonte Oswald como principal; sans-serif é o backup */
+  margin: 0;                         /* Remove as margens padrão do navegador para evitar espaços brancos nas bordas */
+  padding-top: 80px !important;      /* Empurra o conteúdo para baixo para não ficar escondido sob a navbar fixa */
+  background-color: #ffffff;         /* Define o fundo da página como branco puro */
+  color: var(--tertiary-black);      /* Aplica a cor cinza claro definida no :root para todos os textos do body */
 }
 
-button,
-input,
-select,
-textarea {
-  font-family: inherit;
+/* Seletores agrupados para garantir consistência tipográfica em elementos de entrada de dados */
+button, input, select, textarea {
+  font-family: inherit;              /* Obriga esses elementos a usarem a mesma fonte do body (Oswald) */
 }
 
-/* Navbar fixa com a cor Primária (60%) */
+/* 3. COMPONENTES DE NAVEGAÇÃO E TÍTULOS */
 .bg-navy {
-  background-color: var(--primary-navy) !important;
+  background-color: var(--primary-navy) !important; /* Força o fundo a ter a cor primária, ignorando outras regras do Bootstrap */
 }
 
 .titulo-pagina {
-  color: var(--primary-navy);
-  font-weight: 700;
+  color: var(--primary-navy);        /* Aplica o tom rosado principal ao texto do título */
+  font-weight: 700;                  /* Define o peso da fonte como negrito (bold) */
 }
 
-/* Botão Primário (Conforme Design System) */
+/* 4. BOTÕES */
 .btn-primario {
-  background-color: var(--action-blue);
-  color: white;
-  border-radius: 8px; /* Borda 8px exigida */
-  border: none;
-  padding: 8px 24px; /* Escala de 8px */
-  font-family: "Oswald", sans-serif;
-  font-weight: 400;
-  transition: 0.2s;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  text-decoration: none;
+  background-color: var(--action-blue); /* Aplica a cor de fundo de ação */
+  color: white;                         /* Define a cor do texto do botão como branco */
+  border-radius: 8px;                   /* Arredonda os cantos do botão em 8 pixels */
+  border: none;                         /* Remove a borda padrão do navegador */
+  padding: 8px 24px;                    /* Define 8px de espaço em cima/baixo e 24px nas laterais */
+  font-family: "Oswald", sans-serif;    /* Garante o uso da fonte Oswald */
+  font-weight: 400;                     /* Define peso normal para o texto do botão */
+  transition: 0.2s;                     /* Define que qualquer mudança (como hover) levará 0.2 segundos para transicionar */
+  cursor: pointer;                      /* Muda o ícone do mouse para a "mãozinha" ao passar por cima */
+  display: flex;                        /* Habilita o modo Flexbox para alinhar itens internos */
+  align-items: center;                  /* Alinha o conteúdo (ícone/texto) verticalmente no centro */
+  justify-content: center;              /* Alinha o conteúdo horizontalmente no centro */
+  gap: 8px;                             /* Cria um espaçamento de 8px entre o ícone e o texto do botão */
+  text-decoration: none;                /* Remove sublinhados caso o botão seja, na verdade, um link (<a>) */
 }
 
 .btn-primario:hover {
-  filter: brightness(1.1);
+  filter: brightness(1.1);              /* Aumenta a luminosidade do botão em 10% quando o mouse está sobre ele */
 }
 
 .btn-remover {
-  background-color: var(--danger-red);
-  color: white;
-  border-radius: 8px;
-  border: none;
-  padding: 8px 24px;
-  font-family: "Oswald", sans-serif;
-  font-weight: 400;
-  transition: 0.2s;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
+  background-color: var(--danger-red);  /* Aplica a cor vermelha de perigo ao fundo */
+  color: white;                         /* Texto branco */
+  border-radius: 8px;                   /* Cantos arredondados */
+  border: none;                         /* Sem borda */
+  padding: 8px 24px;                    /* Espaçamento interno padrão */
+  font-weight: 400;                     /* Peso de fonte normal */
+  transition: 0.2s;                     /* Transição suave para efeitos */
+  cursor: pointer;                      /* Cursor de clique */
+  display: flex;                        /* Flexbox para alinhamento */
+  align-items: center;                  /* Centro vertical */
+  justify-content: center;              /* Centro horizontal */
+  gap: 8px;                             /* Espaço entre elementos internos */
 }
 
 .btn-remover:hover {
-  filter: brightness(1.1);
+  filter: brightness(1.1);              /* Clareia levemente o vermelho no hover */
 }
 
+/* 5. ELEMENTOS DO CARRINHO E QUANTIDADE */
 .carrinho-contador {
-  background-color: white;
-  color: var(--primary-navy);
-  border-radius: 999px;
-  min-width: 24px;
-  height: 24px;
-  padding: 0 8px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
+  background-color: white;              /* Fundo branco para contrastar com a navbar */
+  color: var(--primary-navy);           /* Texto com a cor rosada principal */
+  border-radius: 999px;                 /* Torna o elemento perfeitamente circular */
+  min-width: 24px;                      /* Garante um tamanho mínimo para não achatar com 1 dígito */
+  height: 24px;                         /* Altura fixa igual à largura mínima */
+  padding: 0 8px;                       /* Espaço interno lateral para números maiores (ex: 10) */
+  display: inline-flex;                 /* Comporta-se como texto, mas permite Flexbox interno */
+  align-items: center;                  /* Centraliza o número verticalmente */
+  justify-content: center;              /* Centraliza o número horizontalmente */
+  font-weight: 700;                     /* Número em negrito */
 }
 
 .controle-quantidade {
-  display: grid;
-  grid-template-columns: 40px 1fr 40px;
-  align-items: center;
-  gap: 8px;
-  margin: 12px 0;
+  display: grid;                        /* Usa Grid Layout para organizar os botões e o valor */
+  grid-template-columns: 40px 1fr 40px; /* Botão (-) com 40px, valor ocupa o resto (1fr), Botão (+) com 40px */
+  align-items: center;                  /* Alinha os 3 itens do grid pelo centro vertical */
+  gap: 8px;                             /* Espaçamento entre os botões e o número */
+  margin: 12px 0;                       /* Espaço de 12px acima e abaixo de todo o conjunto */
 }
 
 .btn-quantidade {
-  width: 40px;
-  height: 40px;
-  border: 1px solid var(--secondary-gray);
-  border-radius: 8px;
-  background-color: var(--light-gray);
-  color: var(--primary-navy);
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 1;
-  cursor: pointer;
+  width: 40px;                          /* Largura fixa do botão quadrado */
+  height: 40px;                         /* Altura fixa do botão quadrado */
+  border: 1px solid var(--secondary-gray); /* Borda fina com a cor cinza secundária */
+  border-radius: 8px;                   /* Cantos arredondados */
+  background-color: var(--light-gray);  /* Fundo cinza claro */
+  color: var(--primary-navy);           /* Símbolos (+) e (-) na cor principal */
+  font-size: 20px;                      /* Tamanho grande para facilitar o clique */
+  font-weight: 700;                     /* Símbolos em negrito */
+  line-height: 1;                       /* Evita que a altura da linha desalinhe o símbolo */
+  cursor: pointer;                      /* Cursor de clique */
 }
 
 .btn-quantidade:disabled {
-  cursor: not-allowed;
-  opacity: 0.45;
+  cursor: not-allowed;                  /* Muda o mouse para um sinal de "bloqueado" */
+  opacity: 0.45;                        /* Deixa o botão semi-transparente para indicar que está inativo */
 }
 
 .quantidade-valor {
-  min-height: 40px;
-  border: 1px solid var(--secondary-gray);
-  border-radius: 8px;
-  color: var(--primary-navy);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
+  min-height: 40px;                     /* Altura mínima para alinhar com os botões laterais */
+  border: 1px solid var(--secondary-gray); /* Borda idêntica aos botões */
+  border-radius: 8px;                   /* Cantos arredondados */
+  color: var(--primary-navy);           /* Cor do número */
+  display: inline-flex;                 /* Flexbox para centralizar o texto interno */
+  align-items: center;                  /* Centraliza verticalmente */
+  justify-content: center;              /* Centraliza horizontalmente */
+  font-weight: 700;                     /* Número em negrito */
 }
 
 .quantidade-carrinho {
-  color: var(--primary-navy);
-  font-weight: 700;
-  margin: 8px 0 12px;
+  color: var(--primary-navy);           /* Cor do texto de quantidade no carrinho */
+  font-weight: 700;                     /* Texto em negrito */
+  margin: 8px 0 12px;                   /* Margens específicas: 8px topo, 0 laterais, 12px base */
 }
 
-/* Botão Secundário */
+/* 6. ESTILOS SECUNDÁRIOS E NAVBAR */
 .btn-secundario {
-  background-color: var(--light-gray);
-  color: var(--tertiary-black);
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  padding: 8px 16px;
-  font-family: "Oswald", sans-serif;
+  background-color: var(--light-gray);  /* Fundo cinza claro neutro */
+  color: var(--tertiary-black);         /* Cor do texto em cinza claro */
+  border: 1px solid #ccc;               /* Borda cinza sólida de 1px */
+  border-radius: 4px;                   /* Arredondamento menor (4px) para diferenciar do primário */
+  padding: 8px 16px;                    /* Menos espaço lateral que o botão primário */
+  font-family: "Oswald", sans-serif;    /* Fonte Oswald */
 }
 
-/* Ajuste de links da Nav */
 .navbar-dark .navbar-nav .nav-link {
-  color: white !important;
-  text-transform: uppercase;
-  padding: 0 16px; /* Escala de 8px */
+  color: white !important;              /* Força a cor dos links da navbar para branco */
+  text-transform: uppercase;            /* Transforma todo o texto em LETRAS MAIÚSCULAS */
+  padding: 0 16px;                      /* Define 16px de espaçamento horizontal entre os links */
 }
 
 .navbar-dark .navbar-nav .nav-link.active {
-  font-weight: 700;
+  font-weight: 700;                     /* Aplica negrito extra apenas no link da página atual */
 }
