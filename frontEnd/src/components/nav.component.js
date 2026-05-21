@@ -35,7 +35,6 @@ export default function criaNavbar() {
   `;
 
   header.appendChild(nav);
-  atualizarContadorCarrinho();
 }
 
 export function ativarMenu(botaoClicado) {

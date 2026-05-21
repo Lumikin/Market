@@ -1,5 +1,4 @@
 import criarCardProduto from "../../components/card.component.js";
-import { atualizarContadorCarrinho } from "../../components/nav.component.js";
 import criarColunas from "../../components/shared/coluna-bootstrap.component.js";
 import {
   listarcarrinho,
@@ -8,7 +7,7 @@ import {
 
 export default function carrinhoProdutosPage() {
   const app = document.querySelector("#app");
-  
+
   const carrinho = listarcarrinho();
 
   // Estrutura padrão: Seus cards + a barra fixa embaixo que foi pedida
@@ -42,23 +41,23 @@ export default function carrinhoProdutosPage() {
   // Função de soma direta e sem firulas
   const atualizarTotalAutomatico = () => {
     const listaAtualizada = listarcarrinho();
-    
+
     const total = listaAtualizada.reduce((acc, prod) => {
       // Pega o preço (testando maiúsculo ou minúsculo que vocês usaram no projeto)
       let preco = prod.Preco || prod.preco || prod.Valor || prod.valor || 0;
-      
+
       // Se o preço for um texto (ex: "R$ 410"), limpa para virar número puro (410)
-      if (typeof preco === 'string') {
+      if (typeof preco === "string") {
         preco = preco.replace("R$", "").replace(" ", "").replace(",", ".");
       }
-      
+
       const precoNumerico = parseFloat(preco) || 0;
-      
+
       return acc + precoNumerico;
     }, 0);
 
     // Coloca o valor formatado bonitinho na tela
-    txtTotal.innerText = `R$ ${total.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`;
+    txtTotal.innerText = `R$ ${total.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}`;
   };
 
   // Executa a soma assim que abre a página

@@ -1,6 +1,5 @@
 import produtos from "../../../../backEnd/data/produtos.data.js";
 import criarCardProduto from "../../components/card.component.js";
-import { atualizarContadorCarrinho } from "../../components/nav.component.js";
 import criarColunas from "../../components/shared/coluna-bootstrap.component.js";
 import {
   isCarrinho,
