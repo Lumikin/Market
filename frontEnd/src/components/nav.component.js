@@ -27,8 +27,7 @@ export default function criaNavbar() {
 
         <div class="d-flex">
           <button class="btn-primario" id="btnCarrinho">
-            <span>CARRINHO</span>
-            <span class="carrinho-contador" id="contadorCarrinho">0</span>
+            <span style="margin-right: 5px;">&#128722;</span> CARRINHO (0)
           </button>
         </div>
       </div>
@@ -44,12 +43,4 @@ export function ativarMenu(botaoClicado) {
     btn.classList.remove("active", "fw-bold");
   });
   botaoClicado.classList.add("active", "fw-bold");
-}
-
-export function atualizarContadorCarrinho() {
-  const contador = document.querySelector("#contadorCarrinho");
-
-  if (contador) {
-    contador.innerText = contarItensCarrinho();
-  }
 }

@@ -70,8 +70,8 @@ function botaoCarrinho(botao, produtoNoCarrinho) {
 export default function ProdutosPage() {
   const app = document.querySelector("#app");
   app.innerHTML = `
-   <h1 class="fw-bold text-center" style="color: #DB8787;">Produtos</h1>
-<div class="row mt-4" id="lista-produtos"></div>
+    <h1 class="titulo-pagina text-center">Produtos</h1>
+    <div class="row mt-4" id="lista-produtos"></div>
   `;
 
   const row = document.querySelector("#lista-produtos");
@@ -90,7 +90,7 @@ export default function ProdutosPage() {
     botaoCarrinho(button, produtoNoCarrinho);
 
     button.addEventListener("click", () => {
-      produtoNoCarrinho = !produtoNoCarrinho;
+      Carrinho = !Carrinho;
 
       if (produtoNoCarrinho) {
         salvarCarrinho(produto, controleQuantidade.getQuantidade());
