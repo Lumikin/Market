@@ -11,8 +11,8 @@ btnHome.addEventListener("click", () => {
   ativarMenu(btnHome);
   ProdutosPage();
 });
-
-
+ativarMenu(btnCarrinho);
 btnCarrinho.addEventListener("click", () => {
+  ativarMenu(btnCarrinho);
   carrinhoProdutosPage();
 });

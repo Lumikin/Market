@@ -21,15 +21,7 @@ function botaoCarrinho(botao, produto) {
 export default function ProdutosPage() {
   const app = document.querySelector("#app");
   app.innerHTML = `
-<<<<<<< HEAD
-<<<<<<< HEAD
-    <h1 class="fw-bold text-primary text-center"> Produtos </h1>
-=======
-    <h1 class="titulo-pagina text-center">Market</h1>
->>>>>>> bfa9f9d9f8ae3974d8740861fa9ddfcf671fc5e2
-=======
-    <h1 class="fw-bold text-primary text-center"> Produtos </h1>
->>>>>>> f39a8e4660e3651b854f0605774b8a27b4853b22
+    <h1 class="titulo-pagina text-center">Produtos</h1>
     <div class="row mt-4" id="lista-produtos"></div>
   `;
 
@@ -42,7 +34,7 @@ export default function ProdutosPage() {
     botaoCarrinho(button, Carrinho);
 
     button.addEventListener("click", () => {
-      Carrinho = !Carrinho; // Inverte para o else
+      Carrinho = !Carrinho;
 
       if (Carrinho) {
         salvarCarrinho(produto);
@@ -56,11 +48,8 @@ export default function ProdutosPage() {
     coluna.appendChild(card);
     row.appendChild(coluna);
   });
-
-  // const produtoImage = produtos.forEach(produto => {
-  //   console.log(produto.Imagem);
-  // });
 }
+
 export function ativarMenu(botaoClicado) {
   document.querySelectorAll(".nav-link").forEach(btn => {
     btn.classList.remove("active", "text-primary", "fw-bold");

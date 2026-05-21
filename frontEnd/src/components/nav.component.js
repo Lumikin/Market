@@ -1,15 +1,14 @@
 export default function criaNavbar() {
   const header = document.querySelector("header");
-  header.innerHTML = ""; 
+  header.innerHTML = "";
 
   const nav = document.createElement("nav");
-  // navbar-dark garante que o ícone do menu (hambúrguer) fique branco
   nav.className = "navbar navbar-expand-lg bg-navy shadow-sm navbar-dark fixed-top";
 
   nav.innerHTML = `
     <div class="container-fluid">
       <a class="navbar-brand fw-bold" href="#" style="font-family: 'Oswald'; letter-spacing: 1px;">
-        HP EXPLORER
+        Espricio Market
       </a>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
@@ -24,8 +23,8 @@ export default function criaNavbar() {
         </ul>
 
         <div class="d-flex">
-          <button class="btn-primario" id="btnCarrinho"> 
-            <span>🛒</span> CARRINHO (0)
+          <button class="btn-primario" id="btnCarrinho">
+            <span>??</span> CARRINHO (0)
           </button>
         </div>
       </div>
