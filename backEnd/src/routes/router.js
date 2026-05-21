@@ -1,7 +1,7 @@
 import { Router } from "express";
-import produtoRoutes from "./produtosRoutes.js";
-import categoriaRoutes from "./categoriaRoutes.js";
-import pedidoRoutes from "./pedidoRoutes.js";
+import produtoRoutes from "./produtos.routes.js";
+import categoriaRoutes from "./categoria.routes.js";
+import pedidoRoutes from "./pedido.routes.js";
 import imagemProdutoRoutes from "./imagemProduto.routes.js";
 
 const routes = Router();

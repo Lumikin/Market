@@ -1,4 +1,4 @@
-import produtoRepositories from "../repositories/produtoRepositories.js";
+import produtoRepositories from "../repositories/produto.repositories.js";
 import { Produtos } from "../models/Produtos.js";
 
 const produtoController = {
