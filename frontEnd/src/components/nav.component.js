@@ -5,7 +5,8 @@ export default function criaNavbar() {
   header.innerHTML = "";
 
   const nav = document.createElement("nav");
-  nav.className = "navbar navbar-expand-lg bg-navy shadow-sm navbar-dark fixed-top";
+  nav.className =
+    "navbar navbar-expand-lg bg-navy shadow-sm navbar-dark fixed-top";
 
   nav.innerHTML = `
     <div class="container-fluid">
