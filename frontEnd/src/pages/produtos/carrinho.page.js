@@ -52,8 +52,12 @@ export default function carrinhoProdutosPage() {
       }
 
       const precoNumerico = parseFloat(preco) || 0;
+      
+      // Pega a quantidade exata do carrinho definida no seu storage
+      const quantidadeProdutos = parseInt(prod.QuantidadeCarrinho) || 1;
 
-      return acc + precoNumerico;
+      // Retorna a soma multiplicando o preço pela quantidade do item
+      return acc + (precoNumerico * quantidadeProdutos);
     }, 0);
 
     // Coloca o valor formatado bonitinho na tela
