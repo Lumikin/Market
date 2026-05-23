@@ -3,13 +3,18 @@ import pedidoController from "../controllers/pedidoController.js";
 
 const pedidoRoutes = Router();
 
-pedidoRoutes.get("/", pedidoController.selecionar);
-pedidoRoutes.post("/", pedidoController.criar);
-pedidoRoutes.get("/:id", pedidoController.selecionarId);
-pedidoRoutes.put("/:id", pedidoController.atualizar);
-pedidoRoutes.delete("/:id", pedidoController.deletar);
+pedidoRoutes.get("/", pedidoController.listarPedidos);
+pedidoRoutes.post("/", pedidoController.criarPedido);
+
+pedidoRoutes.get("/itens/", pedidoController.listarItens);
 
 
-pedidoRoutes.get("/itens/itens", pedidoController.selecionar);
+pedidoRoutes.get("/:id", pedidoController.listarIDPedidos);
+pedidoRoutes.put("/:id", pedidoController.atualizarPedido);
+pedidoRoutes.delete("/:id", pedidoController.deletarPedido);
+pedidoRoutes.get("/itens/:id", pedidoController.listarIDItem);
+pedidoRoutes.put("/itens/:id", pedidoController.alterarItem);
+
+
 
 export default pedidoRoutes;

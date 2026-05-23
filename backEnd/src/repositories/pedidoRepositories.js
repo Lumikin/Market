@@ -1,7 +1,7 @@
 import { connection } from "../config/Database.js";
 
 const pedidoRepositories = {
-  post: async (pedido, itemPed) => {
+  criarPedido: async (pedido, itemPed) => {
     const conn = await connection.getConnection();
 
     try {
@@ -34,49 +34,73 @@ const pedidoRepositories = {
       conn.release();
     }
   },
-
-  get: async () => {
+  listarPedidos: async () => {
     const sql = "SELECT * FROM pedidos;";
     const [rows] = await connection.execute(sql);
     return rows;
   },
-
-  getId: async (id) => {
+  listarIDPedido: async (id) => {
     const sql = "SELECT * FROM pedidos WHERE idPedido = ?;";
     const values = [id];
     const [rows] = await connection.execute(sql, values);
     return rows;
   },
-
-  getItensPorPedido: async (pedidoId) => {
-    const sql = "SELECT * FROM itens_pedidos WHERE PedidoId = ?;";
-    const values = [pedidoId];
+  alterarPedido: async (pedido) => {
+    const sql = "UPDATE pedidos SET status = ? WHERE idPedido = ?;";
+    const values = [pedido.status, pedido.id];
     const [rows] = await connection.execute(sql, values);
     return rows;
   },
-
-  getItens: async () => {
-    const sql = "SELECT * FROM itens_pedidos;";
-    const [rows] = await connection.execute(sql);
-    return rows;
-  },
-
-  put: async (pedido) => {
-    const sql =
-      "UPDATE pedidos SET Subtotal = ?, Status = ? WHERE idPedido = ?;";
-    const values = [pedido.subTotal, pedido.status, pedido.id];
-    const [rows] = await connection.execute(sql, values);
-    return rows;
-  },
-
-  putStatus: async (pedido) => {
+  alterarStatusPedido: async (pedido) => {
     const sql = "UPDATE pedidos SET Status = ? WHERE idPedido = ?;";
     const values = [pedido.status, pedido.id];
     const [rows] = await connection.execute(sql, values);
     return rows;
   },
+  deletarPedido: async (id) => {
+    const conn = await connection.getConnection();
 
-  putItem: async (itemId, pedidoId, item) => {
+    try {
+      await conn.beginTransaction();
+
+      // --- DELETE ITENS DO PEDIDO --- //
+      const sqlDeleteItens = "DELETE FROM itens_pedidos WHERE idPedido = ?;";
+      await conn.execute(sqlDeleteItens, [id]);
+
+      // --- DELETE PEDIDO --- //
+      const sqlDeletePedido = "DELETE FROM pedidos WHERE idPedido = ?;";
+      const [rows] = await conn.execute(sqlDeletePedido, [id]);
+
+      await conn.commit();
+      return rows;
+    } catch (error) {
+      await conn.rollback();
+      throw new Error(error);
+    } finally {
+      conn.release();
+    }
+  },
+
+  // --- Itens Pedidos --- //
+
+  listarItensPorPedido: async (pedidoId) => {
+    const sql = "SELECT * FROM itens_pedidos WHERE PedidoId = ?;";
+    const values = [pedidoId];
+    const [rows] = await connection.execute(sql, values);
+    return rows;
+  },
+  listarItens: async () => {
+    const sql = "SELECT * FROM itens_pedidos;";
+    const [rows] = await connection.execute(sql);
+    return rows;
+  },
+  listarIDItem: async (id) => {
+    const sql = "SELECT * FROM itens_pedidos WHERE id = ?;";
+    const values = [id];
+    const [rows] = await connection.execute(sql, values);
+    return rows;
+  },
+  alterarItem: async (itemId, pedidoId, item) => {
     const conn = await connection.getConnection();
 
     try {
@@ -84,7 +108,7 @@ const pedidoRepositories = {
 
       // --- UPDATE ITEM --- //
       const sqlUpdate =
-        "UPDATE itens_pedidos SET ProdutoId = ?, Quantidade = ?, ValorItem = ? WHERE id = ? AND PedidoId = ?;";
+        "UPDATE itens_pedidos SET ProdutoId = ?, Quantidade = ?, ValorItem = ? WHERE id = ?;";
       const valuesUpdate = [
         item.idProduto,
         item.estoque,
@@ -114,72 +138,7 @@ const pedidoRepositories = {
       conn.release();
     }
   },
-
-  postItem: async (pedidoId, itemPed) => {
-    const conn = await connection.getConnection();
-
-    try {
-      await conn.beginTransaction();
-
-      // --- INSERT ITENS --- //
-      for (const item of itemPed) {
-        const sqlItemPed =
-          "INSERT INTO itens_pedidos (PedidoId, ProdutoId, Quantidade, ValorItem) VALUES (?, ?, ?, ?);";
-        const valuesItemPed = [
-          pedidoId,
-          item.idProduto,
-          item.estoque,
-          item.valorItem,
-        ];
-        await conn.execute(sqlItemPed, valuesItemPed);
-      }
-
-      // --- RECALCULAR SUBTOTAL --- //
-      const sqlSubtotal =
-        "SELECT COALESCE(SUM(Quantidade * ValorItem), 0) AS novoSubtotal FROM itens_pedidos WHERE PedidoId = ?;";
-      const [subtotalRows] = await conn.execute(sqlSubtotal, [pedidoId]);
-      const novoSubtotal = subtotalRows[0].novoSubtotal;
-
-      // --- UPDATE PEDIDO SUBTOTAL --- //
-      const sqlUpdatePedido =
-        "UPDATE pedidos SET Subtotal = ? WHERE idPedido = ?;";
-      await conn.execute(sqlUpdatePedido, [novoSubtotal, pedidoId]);
-
-      await conn.commit();
-      return { pedidoId, novoSubtotal };
-    } catch (error) {
-      await conn.rollback();
-      throw new Error(error);
-    } finally {
-      conn.release();
-    }
-  },
-
-  delete: async (id) => {
-    const conn = await connection.getConnection();
-
-    try {
-      await conn.beginTransaction();
-
-      // --- DELETE ITENS DO PEDIDO --- //
-      const sqlDeleteItens = "DELETE FROM itens_pedidos WHERE idPedido = ?;";
-      await conn.execute(sqlDeleteItens, [id]);
-
-      // --- DELETE PEDIDO --- //
-      const sqlDeletePedido = "DELETE FROM pedidos WHERE idPedido = ?;";
-      const [rows] = await conn.execute(sqlDeletePedido, [id]);
-
-      await conn.commit();
-      return rows;
-    } catch (error) {
-      await conn.rollback();
-      throw new Error(error);
-    } finally {
-      conn.release();
-    }
-  },
-
-  deleteItem: async (itemId) => {
+  deletarItem: async (itemId) => {
     const conn = await connection.getConnection();
 
     try {
