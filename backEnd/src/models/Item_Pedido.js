@@ -26,8 +26,12 @@ export class ItensPedido {
     return this.#idProduto;
   }
 
+  get quantidade() {
+    return this.#quantidade;
+  }
+
   get estoque() {
-    return this.#estoque;
+    return this.#quantidade;
   }
 
   get valorItem() {
@@ -50,9 +54,13 @@ export class ItensPedido {
     this.#idProduto = value;
   }
 
+  set quantidade(value) {
+    this.#validarQuantidade(value);
+    this.#quantidade = value;
+  }
+
   set estoque(value) {
-    this.#validarEstoque(value);
-    this.#estoque = value;
+    this.quantidade = value;
   }
 
   set valorItem(value) {
@@ -79,9 +87,9 @@ export class ItensPedido {
     }
   }
 
-  #validarEstoque(value) {
+  #validarQuantidade(value) {
     if (!value || value <= 0) {
-      throw new Error("Informe um estoque válido");
+      throw new Error("Informe uma quantidade valida");
     }
   }
 
@@ -111,7 +119,7 @@ export class ItensPedido {
 
   static editar(dados, id) {
     return new ItensPedido(
-      dados.idPedido,
+      dados.pedidoId,
       dados.idProduto,
       dados.quantidade,
       dados.valorItem,

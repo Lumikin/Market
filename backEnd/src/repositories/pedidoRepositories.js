@@ -114,7 +114,6 @@ const pedidoRepositories = {
         item.quantidade,
         item.valorItem,
         itemId,
-        pedidoId,
       ];
       await conn.execute(sqlUpdate, valuesUpdate);
 
