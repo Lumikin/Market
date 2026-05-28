@@ -1,0 +1,635 @@
+type: collection.insomnia.rest/5.0
+schema_version: "5.1"
+name: Market
+meta:
+  id: wrk_ee55e79913e649f8bb6c39f2b054dcc5
+  created: 1779966626028
+  modified: 1779966626028
+  description: ""
+collection:
+  - name: Categorias
+    meta:
+      id: fld_7cc318cdc51a4b29a1f989d07ee867f7
+      created: 1779966639669
+      modified: 1779966707935
+      sortKey: -1779966639670
+      description: ""
+    children:
+      - url: http://localhost:8080/categorias
+        name: "Criar "
+        meta:
+          id: req_699f974a8d1d462ebe4e19ec4fc60496
+          created: 1779966645544
+          modified: 1779967247158
+          isPrivate: false
+          description: ""
+          sortKey: -1779966645544
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"nome": "Categoria para editar",
+            "descricao": "Para o teste do atualizar"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/categorias
+        name: Listar
+        meta:
+          id: req_69682878575f44018e8ae1ac5469e047
+          created: 1779966660620
+          modified: 1779967021225
+          isPrivate: false
+          description: ""
+          sortKey: -1779966660620
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/categorias/10
+        name: Atualizar
+        meta:
+          id: req_a1b19d46d5ee410eb985a207543ffef8
+          created: 1779966703337
+          modified: 1779967347834
+          isPrivate: false
+          description: ""
+          sortKey: -1779966703337
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"nome":"Categoria para editar",
+            	"descricao":"Essa categoria foi atualizada com sucesso"
+            }
+        parameters:
+          - name: id
+            value: ""
+            description: ""
+            disabled: false
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/categorias/9
+        name: Deletar
+        meta:
+          id: req_03bafdb81ffa426ba266b53a5c4c4501
+          created: 1779966864761
+          modified: 1779967161394
+          isPrivate: false
+          description: ""
+          sortKey: -1779966864761
+        method: DELETE
+        parameters:
+          - name: "id "
+            value: "9"
+            description: ""
+            disabled: false
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/categorias/6
+        name: Listar por ID
+        meta:
+          id: req_547793f81c744fcba3c395edae0afef3
+          created: 1779966869005
+          modified: 1779967413547
+          isPrivate: false
+          description: ""
+          sortKey: -1779966869005
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Produtos
+    meta:
+      id: fld_f00c3795ce6e486aa50b131f15ed1dd5
+      created: 1779967749616
+      modified: 1779967749616
+      sortKey: -1779967749616
+      description: ""
+    children:
+      - url: http://localhost:8080/produtos
+        name: Criar
+        meta:
+          id: req_3f79c9f336b04cefbc3b518aea11f338
+          created: 1779967813547
+          modified: 1779970684034
+          isPrivate: false
+          description: ""
+          sortKey: -1779967813547
+        method: POST
+        body:
+          mimeType: multipart/form-data
+          params:
+            - name: idCategoria
+              value: "10"
+            - name: nome
+              value: Produto para deletar
+              description: ""
+              disabled: false
+            - name: descricao
+              value: DELETE
+              description: ""
+              disabled: false
+            - name: preco
+              value: "1999.99"
+              description: ""
+              disabled: false
+            - name: estoque
+              value: "999"
+              description: ""
+              disabled: false
+              multiline: false
+              type: text
+            - name: image
+              value: ""
+              description: ""
+              disabled: false
+              multiline: true
+              fileName: C:\Users\41941734812\Downloads\produtoParaEditar.jpg
+              type: file
+        headers:
+          - name: Content-Type
+            value: multipart/form-data
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/produtos/8
+        name: Atualizar
+        meta:
+          id: req_0cfefaec58fd49bab69e251143a10246
+          created: 1779967817096
+          modified: 1779970585078
+          isPrivate: false
+          description: ""
+          sortKey: -1779967817096
+        method: PUT
+        body:
+          mimeType: multipart/form-data
+          params:
+            - name: idCategoria
+              value: "10"
+              description: ""
+              disabled: false
+            - name: nome
+              value: Edição
+              description: ""
+              disabled: false
+            - name: descricao
+              value: Prduto criado para testar o editar
+              description: ""
+              disabled: false
+            - name: preco
+              value: "67.67"
+              description: ""
+              disabled: false
+            - name: estoque
+              value: "67"
+              description: ""
+              disabled: false
+            - name: image
+              value: ""
+              description: ""
+              disabled: false
+              fileName: C:\Users\41941734812\Downloads\ProdutoTeste.jpg
+              type: file
+        parameters:
+          - name: id
+            value: "8"
+            description: ""
+            disabled: false
+        headers:
+          - name: Content-Type
+            value: multipart/form-data
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/produtos/9
+        name: Deletar
+        meta:
+          id: req_6061adc59cbc4395a1d230c608c179c1
+          created: 1779967825923
+          modified: 1779970731800
+          isPrivate: false
+          description: ""
+          sortKey: -1779967825923
+        method: DELETE
+        parameters:
+          - name: id
+            value: "9"
+            description: ""
+            disabled: false
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/produtos
+        name: Listar
+        meta:
+          id: req_51d5e5c5cf1f400eafcd051cbb35dce9
+          created: 1779967827040
+          modified: 1779970714351
+          isPrivate: false
+          description: ""
+          sortKey: -1779967827040
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/produtos/7
+        name: Listar por ID
+        meta:
+          id: req_67dbd7f66fdd4bfda489b0203a62cb76
+          created: 1779967828189
+          modified: 1779970365679
+          isPrivate: false
+          description: ""
+          sortKey: -1779967828189
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Pedidos
+    meta:
+      id: fld_cd544330498b433b906fb4c493c4a5b5
+      created: 1779970762252
+      modified: 1779970804465
+      sortKey: -1779970762252
+      description: ""
+    children:
+      - url: http://localhost:8080/pedidos/3
+        name: Listar por ID
+        meta:
+          id: req_8dd883caddd243d89110702a9878ddb9
+          created: 1779970799347
+          modified: 1779975242830
+          isPrivate: false
+          description: ""
+          sortKey: -1779970799347
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/pedidos
+        name: Listar
+        meta:
+          id: req_64da750010e543e18a4979d830299209
+          created: 1779970809479
+          modified: 1779970945563
+          isPrivate: false
+          description: ""
+          sortKey: -1779970809479
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/pedidos/1
+        name: Atualizar
+        meta:
+          id: req_372855784814477bb01019ae197ca0a9
+          created: 1779970810941
+          modified: 1779976237663
+          isPrivate: false
+          description: ""
+          sortKey: -1779970810941
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "status": "Finalizado"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/pedidos
+        name: Criar
+        meta:
+          id: req_754c64ab9f9e40d395928d6cdfa58dda
+          created: 1779970813911
+          modified: 1779975937693
+          isPrivate: false
+          description: ""
+          sortKey: -1779970813911
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "itens": [
+                {
+                  "idProduto": 7,
+                  "quantidade": 1,
+                  "valorItem": 70
+                },
+                {
+                  "idProduto": 6,
+                  "quantidade": 8,
+                  "valorItem": 10
+                }
+              ]
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/pedidos/9
+        name: Deletar
+        meta:
+          id: req_c54fb1e8aeb54d8484c2de009680bd8f
+          created: 1779974990607
+          modified: 1779975962960
+          isPrivate: false
+          description: ""
+          sortKey: -1779974990607
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Itens Pedidos
+    meta:
+      id: fld_5aa79cb456ef4247bdc5e9131f85e8aa
+      created: 1779976291293
+      modified: 1779976299700
+      sortKey: -1779976291293
+      description: ""
+    children:
+      - url: http://localhost:8080/pedidos/itens/12
+        name: Deletar
+        meta:
+          id: req_cd955b1d22a24256a9631a3d3524cc63
+          created: 1779976308030
+          modified: 1779983180477
+          isPrivate: false
+          description: ""
+          sortKey: -1779976308030
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/pedidos/itens/11
+        name: Atualizar
+        meta:
+          id: req_26647224e3aa494397f41b74919547aa
+          created: 1779976784184
+          modified: 1779983513000
+          isPrivate: false
+          description: ""
+          sortKey: -1779976784184
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "pedidoId": 7,
+              "idProduto": 8,
+              "quantidade": 999,
+              "valorItem": 1
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/pedidos/itens/5
+        name: Listar por ID
+        meta:
+          id: req_60771bec7b914f379b5ad4e60d65f056
+          created: 1779976785729
+          modified: 1779983152350
+          isPrivate: false
+          description: ""
+          sortKey: -1779976785729
+        method: GET
+        parameters:
+          - name: id
+            value: "2"
+            description: ""
+            disabled: false
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/pedidos/itens
+        name: Listar
+        meta:
+          id: req_a38911fbab7344b189509b95f92f0ebc
+          created: 1779976787096
+          modified: 1779976861351
+          isPrivate: false
+          description: ""
+          sortKey: -1779976787096
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_2e2fcb1e67c39a1929bc0e5460a05d0bf2e5a0f1
+    created: 1779966626042
+    modified: 1779966626042
+environments:
+  name: Base Environment
+  meta:
+    id: env_2e2fcb1e67c39a1929bc0e5460a05d0bf2e5a0f1
+    created: 1779966626035
+    modified: 1779966626035
+    isPrivate: false

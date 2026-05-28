@@ -2,13 +2,13 @@ export class ItensPedido {
   #id;
   #pedidoId;
   #idProduto;
-  #estoque;
+  #quantidade;
   #valorItem;
 
-  constructor(pPedidoId, pIdProduto, pEstoque, pValorItem, pID) {
+  constructor(pPedidoId, pIdProduto, pQuantidade, pValorItem, pID) {
     this.#pedidoId = pPedidoId;
     this.#idProduto = pIdProduto;
-    this.#estoque = pEstoque;
+    this.#quantidade = pQuantidade;
     this.#valorItem = pValorItem;
     this.#id = pID;
   }
@@ -93,7 +93,7 @@ export class ItensPedido {
 
   static calcularSubTotal(itens) {
     return itens.reduce(
-      (total, item) => total + item.valorItem * item.estoque,
+      (total, item) => total + item.valorItem * item.quantidade,
       0,
     );
   }
@@ -103,7 +103,7 @@ export class ItensPedido {
     return new ItensPedido(
       dados.pedidoId,
       dados.idProduto,
-      dados.estoque,
+      dados.quantidade,
       dados.valorItem,
       null,
     );
@@ -113,7 +113,7 @@ export class ItensPedido {
     return new ItensPedido(
       dados.idPedido,
       dados.idProduto,
-      dados.estoque,
+      dados.quantidade,
       dados.valorItem,
       id,
     );

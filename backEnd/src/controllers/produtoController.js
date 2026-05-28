@@ -76,8 +76,8 @@ const produtoController = {
         nome,
         descricao,
         preco,
-        Imagem,
         estoque,
+        Imagem,
       });
 
       const result = await produtoRepositories.criar(produto);
