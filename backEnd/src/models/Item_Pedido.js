@@ -1,13 +1,13 @@
 export class ItensPedido {
   #id;
   #pedidoId;
-  #produtoId;
+  #idProduto;
   #quantidade;
   #valorItem;
 
-  constructor(pPedidoId, pProdutoId, pQuantidade, pValorItem, pID) {
+  constructor(pPedidoId, pIdProduto, pQuantidade, pValorItem, pID) {
     this.#pedidoId = pPedidoId;
-    this.#produtoId = pProdutoId;
+    this.#idProduto = pIdProduto;
     this.#quantidade = pQuantidade;
     this.#valorItem = pValorItem;
     this.#id = pID;
@@ -22,8 +22,8 @@ export class ItensPedido {
     return this.#pedidoId;
   }
 
-  get produtoId() {
-    return this.#produtoId;
+  get idProduto() {
+    return this.#idProduto;
   }
 
   get quantidade() {
@@ -45,9 +45,9 @@ export class ItensPedido {
     this.#pedidoId = value;
   }
 
-  set produtoId(value) {
+  set idProduto(value) {
     this.#validarProdutoId(value);
-    this.#produtoId = value;
+    this.#idProduto = value;
   }
 
   set quantidade(value) {
@@ -62,7 +62,7 @@ export class ItensPedido {
 
   // Métodos auxiliares
   #validarId(value) {
-    if (value <= 0) {
+    if (value && value <= 0) {
       throw new Error("Verifique o ID informado");
     }
   }
@@ -94,16 +94,28 @@ export class ItensPedido {
   static calcularSubTotal(itens) {
     return itens.reduce(
       (total, item) => total + item.valorItem * item.quantidade,
-      0
+      0,
     );
   }
 
   // Factory Methods
   static criar(dados) {
-    return new ItensPedido(dados.pedidoId, dados.produtoId, dados.quantidade, dados.valorItem, null);
+    return new ItensPedido(
+      dados.pedidoId,
+      dados.idProduto,
+      dados.quantidade,
+      dados.valorItem,
+      null,
+    );
   }
 
   static editar(dados, id) {
-    return new ItensPedido(dados.pedidoId, dados.produtoId, dados.quantidade, dados.valorItem, id);
+    return new ItensPedido(
+      dados.idPedido,
+      dados.idProduto,
+      dados.quantidade,
+      dados.valorItem,
+      id,
+    );
   }
 }
