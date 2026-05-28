@@ -26,8 +26,8 @@ export class ItensPedido {
     return this.#idProduto;
   }
 
-  get quantidade() {
-    return this.#quantidade;
+  get estoque() {
+    return this.#estoque;
   }
 
   get valorItem() {
@@ -50,9 +50,9 @@ export class ItensPedido {
     this.#idProduto = value;
   }
 
-  set quantidade(value) {
-    this.#validarQuantidade(value);
-    this.#quantidade = value;
+  set estoque(value) {
+    this.#validarEstoque(value);
+    this.#estoque = value;
   }
 
   set valorItem(value) {
@@ -79,9 +79,9 @@ export class ItensPedido {
     }
   }
 
-  #validarQuantidade(value) {
+  #validarEstoque(value) {
     if (!value || value <= 0) {
-      throw new Error("Informe uma quantidade válida");
+      throw new Error("Informe um estoque válido");
     }
   }
 

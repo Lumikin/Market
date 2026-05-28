@@ -175,7 +175,39 @@ const pedidoController = {
         message: "Pedido atualizado com sucesso!",
         result
       });
+    }
+  },
 
+  atualizarPedido: async (req, res) => {
+    try {
+      const id = Number(req.params.id);
+      const { status } = req.body;
+
+      const statusValidos = statusPedido;
+
+      if (
+        !status ||
+        (status !== statusValidos.ABERTO &&
+          status !== statusValidos.FINALIZADO &&
+          status !== statusValidos.PENDENTE)
+      ) {
+        return res.status(400).json({
+          message: "Status inválido, informe Aberto, Finalizado ou Pendente",
+        });
+      }
+
+      const pedido = Pedido.editar({ status }, id);
+
+      const result = await pedidoRepositories.alterarStatusPedido(pedido);
+
+      if (result.affectedRows === 0) {
+        return res.status(400).json({
+          message: "Erro ao atualizar o pedido. Pedido não encontrado.",
+          data: result,
+        });
+      }
+
+      res.status(200).json({ result });
     } catch (error) {
 
       console.log(error);
@@ -298,7 +330,19 @@ const pedidoController = {
         message: "Item encontrado com sucesso!",
         item: result
       });
+    }
+  },
+  alterarItem: async (req, res) => {
+    try {
+      const itemId = Number(req.params.id);
+      const { idProduto, estoque, valorItem } = req.body;
+      const item = ItensPedido.editar(
+        { idProduto, estoque, valorItem },
+        itemId,
+      );
+      const result = await pedidoRepositories.alterarItem(item);
 
+      res.status(200).json({ result });
     } catch (error) {
 
       console.log(error);
