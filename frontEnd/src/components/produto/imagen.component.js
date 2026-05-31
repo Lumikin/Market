@@ -3,15 +3,17 @@ export default function criarImagemProduto(produto) {
   const img = document.createElement("img");
   img.alt = produto.Nome;
   img.className = "card-img-top img-fluid";
+  const imagem = produto.Imagem;
 
   img.style.height = "360px";
-  img.style.objectFit = produto.Imagem ? "contain" : "";
+  img.style.objectFit = imagem ? "contain" : "";
 
-  const nomeImagem = produto.Imagem ? produto.Imagem.replace(/^.*\//, "") : ""; // Tira o uploads/images
+  // O backend salva o caminho completo, mas a rota publica recebe apenas o nome do arquivo.
+  const nomeImagem = imagem ? imagem.replace(/^.*\//, "") : "";
 
-  img.src = produto.Imagem
+  img.src = imagem && imagem !== "undefined"
     ? `http://localhost:8080/images/produto/${nomeImagem}`
-    : "/Not-Found.jpg";
+    : "../../public/Not-Found.jpg";
   console.log(img.src);
   return img;
 }

@@ -10,7 +10,7 @@ export default function carrinhoProdutosPage() {
 
   const carrinho = listarcarrinho();
 
-  // Estrutura padrão: Seus cards + a barra fixa embaixo que foi pedida
+  // A barra fixa deixa o total e o checkout sempre visiveis durante a rolagem.
   app.innerHTML = `
     <div class="container my-4" style="padding-bottom: 120px;"> 
       <h1 class="titulo-pagina text-center mb-4" style="font-family: 'Oswald'; color: #012549;">Carrinho</h1>
@@ -38,33 +38,19 @@ export default function carrinhoProdutosPage() {
   const row = document.querySelector("#lista-carrinho");
   const txtTotal = document.querySelector("#valor-total-compra");
 
-  // Função de soma direta e sem firulas
   const atualizarTotalAutomatico = () => {
     const listaAtualizada = listarcarrinho();
 
-    const total = listaAtualizada.reduce((acc, prod) => {
-      // Pega o preço (testando maiúsculo ou minúsculo que vocês usaram no projeto)
-      let preco = prod.Preco || prod.preco || prod.Valor || prod.valor || 0;
-
-      // Se o preço for um texto (ex: "R$ 410"), limpa para virar número puro (410)
-      if (typeof preco === "string") {
-        preco = preco.replace("R$", "").replace(" ", "").replace(",", ".");
-      }
-
-      const precoNumerico = parseFloat(preco) || 0;
-      
-      // Pega a quantidade exata do carrinho definida no seu storage
-      const quantidadeProdutos = parseInt(prod.QuantidadeCarrinho) || 1;
-
-      // Retorna a soma multiplicando o preço pela quantidade do item
-      return acc + (precoNumerico * quantidadeProdutos);
+    const total = listaAtualizada.reduce((acc, produto) => {
+      // Usa o preco vindo do backend e a quantidade salva no carrinho.
+      const preco = Number(produto.preco) || 0;
+      const quantidade = Number(produto.QuantidadeCarrinho) || 1;
+      return acc + preco * quantidade;
     }, 0);
 
-    // Coloca o valor formatado bonitinho na tela
-    txtTotal.innerText = `R$ ${total.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}`;
+    txtTotal.innerText = `R$ ${total.toFixed(2)}`; //Formato em reais com 2 casas decimais
   };
 
-  // Executa a soma assim que abre a página
   atualizarTotalAutomatico();
 
   carrinho.forEach(produto => {
@@ -73,7 +59,7 @@ export default function carrinhoProdutosPage() {
     const button = card.querySelector("button");
     const quantidade = document.createElement("p");
     quantidade.className = "quantidade-carrinho";
-    quantidade.innerText = `Quantidade: ${produto.QuantidadeCarrinho || 1}`;
+    quantidade.innerText = `Quantidade: ${produto.QuantidadeCarrinho}`;
 
     if (button) {
       button.className = "btn-remover w-100 justify-content-center";
@@ -82,7 +68,7 @@ export default function carrinhoProdutosPage() {
       button.addEventListener("click", () => {
         removerCarrinho(produto);
         coluna.remove();
-        atualizarTotalAutomatico(); // Recalcula quando clica em remover
+        atualizarTotalAutomatico();
       });
     }
 

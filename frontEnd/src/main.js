@@ -8,6 +8,7 @@ ProdutosPage();
 const btnHome = document.querySelector("#btnHome");
 const btnCarrinho = document.querySelector("#btnCarrinho");
 
+// troca o conteudo principal sem recarregar a pagina.
 btnHome.addEventListener("click", () => {
   ativarMenu(btnHome);
   ProdutosPage();

@@ -72,7 +72,7 @@ const produtoController = {
         });
       }
 
-      const Imagem = `uploads/images/${req.file.filename}`; // Caminho relativo usado pelo backend
+      const Imagem = `uploads/images/${req.file.filename}`; // Caminho relativo da imagem
 
       const produto = Produtos.criar({
         idCategoria,
