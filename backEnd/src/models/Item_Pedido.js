@@ -1,14 +1,16 @@
 export class ItensPedido {
+  // Modelo de item de pedido. Representa a relação entre pedido e produto,
+  // além de encapsular regras de validação e cálculo de subtotal.
   #id;
   #pedidoId;
-  #produtoId;
-  #quantidade;
+  #idProduto;
+  #estoque;
   #valorItem;
 
-  constructor(pPedidoId, pProdutoId, pQuantidade, pValorItem, pID) {
+  constructor(pPedidoId, pIdProduto, pEstoque, pValorItem, pID) {
     this.#pedidoId = pPedidoId;
-    this.#produtoId = pProdutoId;
-    this.#quantidade = pQuantidade;
+    this.#idProduto = pIdProduto;
+    this.#estoque = pEstoque;
     this.#valorItem = pValorItem;
     this.#id = pID;
   }
@@ -22,12 +24,12 @@ export class ItensPedido {
     return this.#pedidoId;
   }
 
-  get produtoId() {
-    return this.#produtoId;
+  get idProduto() {
+    return this.#idProduto;
   }
 
-  get quantidade() {
-    return this.#quantidade;
+  get estoque() {
+    return this.#estoque;
   }
 
   get valorItem() {
@@ -45,14 +47,14 @@ export class ItensPedido {
     this.#pedidoId = value;
   }
 
-  set produtoId(value) {
+  set idProduto(value) {
     this.#validarProdutoId(value);
-    this.#produtoId = value;
+    this.#idProduto = value;
   }
 
-  set quantidade(value) {
-    this.#validarQuantidade(value);
-    this.#quantidade = value;
+  set estoque(value) {
+    this.#validarEstoque(value);
+    this.#estoque = value;
   }
 
   set valorItem(value) {
@@ -62,7 +64,7 @@ export class ItensPedido {
 
   // Métodos auxiliares
   #validarId(value) {
-    if (value <= 0) {
+    if (value && value <= 0) {
       throw new Error("Verifique o ID informado");
     }
   }
@@ -79,9 +81,9 @@ export class ItensPedido {
     }
   }
 
-  #validarQuantidade(value) {
+  #validarEstoque(value) {
     if (!value || value <= 0) {
-      throw new Error("Informe uma quantidade válida");
+      throw new Error("Informe um estoque válido");
     }
   }
 
@@ -92,18 +94,31 @@ export class ItensPedido {
   }
 
   static calcularSubTotal(itens) {
+    // Soma o valor de cada item levando em conta a quantidade.
     return itens.reduce(
-      (total, item) => total + item.valorItem * item.quantidade,
-      0
+      (total, item) => total + item.valorItem * item.estoque,
+      0,
     );
   }
 
   // Factory Methods
   static criar(dados) {
-    return new ItensPedido(dados.pedidoId, dados.produtoId, dados.quantidade, dados.valorItem, null);
+    return new ItensPedido(
+      dados.pedidoId,
+      dados.idProduto,
+      dados.estoque,
+      dados.valorItem,
+      null,
+    );
   }
 
   static editar(dados, id) {
-    return new ItensPedido(dados.pedidoId, dados.produtoId, dados.quantidade, dados.valorItem, id);
+    return new ItensPedido(
+      dados.idPedido,
+      dados.idProduto,
+      dados.estoque,
+      dados.valorItem,
+      id,
+    );
   }
 }

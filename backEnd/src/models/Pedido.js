@@ -16,6 +16,7 @@ export class Pedido {
   }
 
   get subTotal() {
+    // Retorna o subtotal validado do pedido.
     return this.#subtotal;
   }
   get status() {
@@ -59,9 +60,9 @@ export class Pedido {
 
   //Desing Pattern
   static criar(dados) {
-    return new Pedido(dados, dados.subtotal, dados.status, null);
+    return new Pedido(dados.subTotal, dados.status, null);
   }
   static editar(dados, id) {
-    return new Pedido(dados, dados.subtotal, dados.status, id);
+    return new Pedido(null, dados.status, id);
   }
 }

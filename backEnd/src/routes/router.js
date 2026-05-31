@@ -6,6 +6,7 @@ import imagemProdutoRoutes from "./imagemProduto.routes.js";
 
 const routes = Router();
 
+// Registra as rotas principais da API
 routes.use("/produtos", produtoRoutes);
 routes.use("/categorias", categoriaRoutes);
 routes.use("/pedidos", pedidoRoutes);
