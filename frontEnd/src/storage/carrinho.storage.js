@@ -1,21 +1,36 @@
 export function listarcarrinho() {
-  return JSON.parse(localStorage.getItem('carrinho') || "[]");
+  return JSON.parse(localStorage.getItem("carrinho") || "[]");
 }
 
 function buscarIdProduto(produto) {
   return produto.Id;
 }
 
-export function salvarCarrinho(produto) {
+function salvarListaCarrinho(carrinho) {
+  localStorage.setItem("carrinho", JSON.stringify(carrinho));
+}
+
+export function contarItensCarrinho() {
+  return listarcarrinho().reduce(
+    (total, produto) => total + (produto.QuantidadeCarrinho || 1),
+    0,
+  );
+}
+
+export function salvarCarrinho(produto, quantidade = 1) {
   const carrinho = listarcarrinho();
-  const jaExiste = carrinho.some(
+  const quantidadeCarrinho = Math.max(1, Number(quantidade) || 1);
+  const produtoCarrinho = carrinho.find(
     item => buscarIdProduto(item) === buscarIdProduto(produto),
   );
 
-  if (!jaExiste) {
-    carrinho.push(produto);
-    localStorage.setItem('carrinho', JSON.stringify(carrinho));
+  if (produtoCarrinho) {
+    produtoCarrinho.QuantidadeCarrinho = quantidadeCarrinho;
+  } else {
+    carrinho.push({ ...produto, QuantidadeCarrinho: quantidadeCarrinho });
   }
+
+  salvarListaCarrinho(carrinho);
 }
 
 export function removerCarrinho(produto) {
@@ -23,7 +38,7 @@ export function removerCarrinho(produto) {
   const carrinhoAtualizado = carrinho.filter(
     item => buscarIdProduto(item) !== buscarIdProduto(produto),
   );
-  localStorage.setItem('carrinho', JSON.stringify(carrinhoAtualizado));
+  salvarListaCarrinho(carrinhoAtualizado);
 }
 
 export function isCarrinho(produto) {

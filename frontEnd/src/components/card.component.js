@@ -18,15 +18,19 @@ export default function criarCardProduto(produto) {
 
   const titulo = document.createElement("h5");
   titulo.className = "card-title";
-  titulo.innerText = produto.Nome;
+  titulo.innerText = produto.nome;
 
   const preco = document.createElement("p");
   preco.className = "card-text fw-bold";
-  preco.innerText = `R$ ${produto.Preco}`;
+  preco.innerText = `R$ ${produto.preco}`;
+
+  const quantidade = document.createElement("p");
+  quantidade.className = "card-text fw-bold";
+  quantidade.innerText = `Estoque: ${produto.estoque}`;
 
   const botao = criarBotaoCarrinho();
 
-  cardBody.append(titulo, preco, botao);
+  cardBody.append(titulo, preco, quantidade, botao);
   card.append(imageContainer, cardBody);
 
   return card;

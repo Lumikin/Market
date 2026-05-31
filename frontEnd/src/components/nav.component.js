@@ -1,10 +1,12 @@
+import { contarItensCarrinho } from "../storage/carrinho.storage.js";
+
 export default function criaNavbar() {
   const header = document.querySelector("header");
-  header.innerHTML = ""; 
+  header.innerHTML = "";
 
   const nav = document.createElement("nav");
-  // navbar-dark garante que o ícone do menu (hambúrguer) fique branco
-  nav.className = "navbar navbar-expand-lg bg-navy shadow-sm navbar-dark fixed-top";
+  nav.className =
+    "navbar navbar-expand-lg bg-navy shadow-sm navbar-dark fixed-top";
 
   nav.innerHTML = `
     <div class="container-fluid">
@@ -16,6 +18,7 @@ export default function criaNavbar() {
         <span class="navbar-toggler-icon"></span>
       </button>
 
+
       <div class="collapse navbar-collapse" id="menu" style="font-family: 'Oswald';">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
@@ -24,8 +27,8 @@ export default function criaNavbar() {
         </ul>
 
         <div class="d-flex">
-          <button class="btn-primario" id="btnCarrinho"> 
-            <span>🛒</span> CARRINHO (0)
+          <button class="btn-primario" id="btnCarrinho">
+            <span style="margin-right: 5px;">&#128722;</span> CARRINHO (0)
           </button>
         </div>
       </div>

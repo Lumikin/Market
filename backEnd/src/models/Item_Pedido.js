@@ -1,14 +1,16 @@
 export class ItensPedido {
+  // Modelo de item de pedido. Representa a relação entre pedido e produto,
+  // além de encapsular regras de validação e cálculo de subtotal.
   #id;
   #pedidoId;
   #idProduto;
-  #quantidade;
+  #estoque;
   #valorItem;
 
-  constructor(pPedidoId, pIdProduto, pQuantidade, pValorItem, pID) {
+  constructor(pPedidoId, pIdProduto, pEstoque, pValorItem, pID) {
     this.#pedidoId = pPedidoId;
     this.#idProduto = pIdProduto;
-    this.#quantidade = pQuantidade;
+    this.#estoque = pEstoque;
     this.#valorItem = pValorItem;
     this.#id = pID;
   }
@@ -26,12 +28,8 @@ export class ItensPedido {
     return this.#idProduto;
   }
 
-  get quantidade() {
-    return this.#quantidade;
-  }
-
   get estoque() {
-    return this.#quantidade;
+    return this.#estoque;
   }
 
   get valorItem() {
@@ -54,13 +52,9 @@ export class ItensPedido {
     this.#idProduto = value;
   }
 
-  set quantidade(value) {
-    this.#validarQuantidade(value);
-    this.#quantidade = value;
-  }
-
   set estoque(value) {
-    this.quantidade = value;
+    this.#validarEstoque(value);
+    this.#estoque = value;
   }
 
   set valorItem(value) {
@@ -87,9 +81,9 @@ export class ItensPedido {
     }
   }
 
-  #validarQuantidade(value) {
+  #validarEstoque(value) {
     if (!value || value <= 0) {
-      throw new Error("Informe uma quantidade valida");
+      throw new Error("Informe um estoque válido");
     }
   }
 
@@ -100,8 +94,9 @@ export class ItensPedido {
   }
 
   static calcularSubTotal(itens) {
+    // Soma o valor de cada item levando em conta a quantidade.
     return itens.reduce(
-      (total, item) => total + item.valorItem * item.quantidade,
+      (total, item) => total + item.valorItem * item.estoque,
       0,
     );
   }
@@ -111,7 +106,7 @@ export class ItensPedido {
     return new ItensPedido(
       dados.pedidoId,
       dados.idProduto,
-      dados.quantidade,
+      dados.estoque,
       dados.valorItem,
       null,
     );
@@ -119,9 +114,9 @@ export class ItensPedido {
 
   static editar(dados, id) {
     return new ItensPedido(
-      dados.pedidoId,
+      dados.idPedido,
       dados.idProduto,
-      dados.quantidade,
+      dados.estoque,
       dados.valorItem,
       id,
     );

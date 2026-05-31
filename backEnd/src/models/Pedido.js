@@ -16,6 +16,7 @@ export class Pedido {
   }
 
   get subTotal() {
+    // Retorna o subtotal validado do pedido.
     return this.#subtotal;
   }
   get status() {
