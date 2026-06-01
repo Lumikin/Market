@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import produtoRepositories from "../repositories/produtoRepositories.js";
 import { Produtos } from "../models/Produtos.js";
+import categoriaRepositories from "../repositories/categoriaRepositories.js";
 
 const produtoController = {
   listarProdutos: async (req, res) => {
@@ -68,7 +69,13 @@ const produtoController = {
           message: "Arquivo de imagem não enviado",
         });
       }
-
+      const consultarCategoria =
+        await categoriaRepositories.listarId(idCategoria);
+      if (consultarCategoria.length === 0) {
+        return res.status(400).json({
+          message: "Categoria não encontrata",
+        });
+      }
       const Imagem = `uploads/images/${req.file.filename}`; // --- Caminho relativo da imagem --- //
 
       const produto = Produtos.criar({

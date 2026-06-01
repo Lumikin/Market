@@ -27,7 +27,7 @@ export class ItensPedido {
   }
 
   get estoque() {
-    return this.#estoque;
+    return this.#quantidade;
   }
 
   get valorItem() {
@@ -52,7 +52,7 @@ export class ItensPedido {
 
   set estoque(value) {
     this.#validarEstoque(value);
-    this.#estoque = value;
+    this.#quantidade = value;
   }
 
   set valorItem(value) {
