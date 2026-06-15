@@ -1,20 +1,17 @@
 :root {
-  /* Paleta Corporativa */
-  --primary-navy: #DB8787;   /* Jet Black */
-  --secondary-gray: #E4CFCF; /* Slate Grey */
-  --tertiary-black: #E6E6E6; /* Lavender Grey */
+  /* Paleta centralizada para manter componentes e paginas com a mesma identidade visual. */
+  --primary-navy: #DB8787;
+  --secondary-gray: #E4CFCF;
+  --tertiary-black: #E6E6E6;
 
-  /* Ações e botões */
-  --action-blue:  #E1B7B7;    /* Powder Blue */
+  --action-blue:  #E1B7B7;
   --light-gray: #E6E6E6;
-
-  /* Mantido */
   --danger-red: #D02828;
 }
 body {
   font-family: "Oswald", sans-serif;
   margin: 0;
-  /* Espaçamento superior para a barra fixa (múltiplo de 8) */
+  /* Evita que a navbar fixa cubra o primeiro conteudo da pagina. */
   padding-top: 80px !important;
   background-color: #ffffff;
   color: var(--tertiary-black);
@@ -27,7 +24,6 @@ textarea {
   font-family: inherit;
 }
 
-/* Navbar fixa com a cor Primária (60%) */
 .bg-navy {
   background-color: var(--primary-navy) !important;
 }
@@ -37,13 +33,12 @@ textarea {
   font-weight: 700;
 }
 
-/* Botão Primário (Conforme Design System) */
 .btn-primario {
   background-color: var(--action-blue);
   color: white;
-  border-radius: 8px; /* Borda 8px exigida */
+  border-radius: 8px;
   border: none;
-  padding: 8px 24px; /* Escala de 8px */
+  padding: 8px 24px;
   font-family: "Oswald", sans-serif;
   font-weight: 400;
   transition: 0.2s;
@@ -79,7 +74,62 @@ textarea {
   filter: brightness(1.1);
 }
 
-/* Botão Secundário */
+.carrinho-contador {
+  background-color: white;
+  color: var(--primary-navy);
+  border-radius: 999px;
+  min-width: 24px;
+  height: 24px;
+  padding: 0 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
+
+.controle-quantidade {
+  display: grid;
+  grid-template-columns: 40px 1fr 40px;
+  align-items: center;
+  gap: 8px;
+  margin: 12px 0;
+}
+
+.btn-quantidade {
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--secondary-gray);
+  border-radius: 8px;
+  background-color: var(--light-gray);
+  color: var(--primary-navy);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.btn-quantidade:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.quantidade-valor {
+  min-height: 40px;
+  border: 1px solid var(--secondary-gray);
+  border-radius: 8px;
+  color: var(--primary-navy);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
+
+.quantidade-carrinho {
+  color: var(--primary-navy);
+  font-weight: 700;
+  margin: 8px 0 12px;
+}
+
 .btn-secundario {
   background-color: var(--light-gray);
   color: var(--tertiary-black);
@@ -89,11 +139,10 @@ textarea {
   font-family: "Oswald", sans-serif;
 }
 
-/* Ajuste de links da Nav */
 .navbar-dark .navbar-nav .nav-link {
   color: white !important;
   text-transform: uppercase;
-  padding: 0 16px; /* Escala de 8px */
+  padding: 0 16px;
 }
 
 .navbar-dark .navbar-nav .nav-link.active {

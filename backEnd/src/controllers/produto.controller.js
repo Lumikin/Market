@@ -1,9 +1,11 @@
 import fs from "fs";
 import path from "path";
-import produtoRepositories from "../repositories/produtoRepositories.js";
+import produtoRepositories from "../repositories/produto.repositories.js";
 import { Produtos } from "../models/Produtos.js";
-import categoriaRepositories from "../repositories/categoriaRepositories.js";
+import categoriaRepositories from "../repositories/categoria.repositories.js";
 
+// Controller de produto: trata as requisições HTTP relacionadas a produtos,
+// valida dados de entrada e chama o repositório para executar comandos SQL.
 const produtoController = {
   listarProdutos: async (req, res) => {
     try {
@@ -64,33 +66,27 @@ const produtoController = {
     try {
       const { idCategoria, nome, descricao, preco, estoque } = req.body;
 
+      // Se o upload falhar, retorna erro antes de criar o produto.
       if (!req.file) {
         return res.status(400).json({
           message: "Arquivo de imagem não enviado",
         });
       }
-      const consultarCategoria =
-        await categoriaRepositories.listarId(idCategoria);
-      if (consultarCategoria.length === 0) {
-        return res.status(400).json({
-          message: "Categoria não encontrata",
-        });
-      }
-      const Imagem = `uploads/images/${req.file.filename}`; // --- Caminho relativo da imagem --- //
+
+      const Imagem = `uploads/images/${req.file.filename}`; // Caminho relativo da imagem
 
       const produto = Produtos.criar({
         idCategoria,
         nome,
         descricao,
         preco,
-        estoque,
         Imagem,
+        estoque,
       });
 
       const result = await produtoRepositories.criar(produto);
 
       // --- Mensagem de produto criado --- //
-      console.log("Produto criado: \n", result);
       res.status(201).json({
         Message: "Produto criado com sucesso",
         Data: result,
@@ -108,12 +104,14 @@ const produtoController = {
       const { id } = req.params;
       let { idCategoria, nome, descricao, preco, estoque } = req.body;
 
+      // Validação do ID do produto antes de alterar.
       if (!id || isNaN(id) || Number(id) <= 0) {
         return res.status(400).json({
           Message: "Digite um id válido",
         });
       }
 
+      // Busca produto existente para retornar erro se não encontrado.
       const produtoExistente = await produtoRepositories.listarId(id);
       if (produtoExistente.length === 0) {
         return res.status(400).json({
